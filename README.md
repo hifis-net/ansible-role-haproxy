@@ -1,7 +1,7 @@
 HAProxy Role
 ============
 
-Role sets up a HAproxy instance to be used as a load balancer in a
+Role sets up a HAProxy instance to be used as a load balancer in a
 High Availability and Scalability context.
 
 Requirements

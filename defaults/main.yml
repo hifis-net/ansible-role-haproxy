@@ -1,2 +1,6 @@
 ---
-# defaults file for haproxy_role_init_master
+#
+- name: Restart HAproxy
+  become: yes
+  become_user: root
+  service: "name=haproxy state=restarted"

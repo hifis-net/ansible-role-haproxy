@@ -1,2 +1,29 @@
 ---
-# tasks file for haproxy_role_init_master
+#
+- name: Gather package facts
+  package_facts:
+    manager: auto
+#
+- name: Add PPA for HAproxy
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: ppa:vbernat/haproxy-2.0
+    state: present
+    validate_certs: yes
+#
+- name: Install "haproxy" package
+  become: yes
+  become_user: root
+  apt:
+    name: haproxy=2.0.*
+    update_cache: yes
+  when: "'haproxy' not in ansible_facts.packages"
+  register: install_output
+#
+- name: Register HAproxy Service.
+  become: yes
+  become_user: root
+  service: "name=haproxy state=started enabled=yes"
+  when: "install_output.changed == True"
+  notify: Restart HAproxy
