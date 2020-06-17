@@ -12,6 +12,22 @@
     state: present
     validate_certs: yes
 #
+- name: Create HAProxy Configuration Directory.
+  become: yes
+  become_user: root
+  file:
+    path: /etc/haproxy/
+    state: directory
+    mode: 0755
+#
+- name: Create HAProxy Configuration File.
+  become: yes
+  become_user: root
+  template:
+    src: haproxy.cfg.j2
+    dest: "/etc/haproxy/haproxy.cfg"
+    mode: 0644
+#
 - name: Install "haproxy" package
   become: yes
   become_user: root
