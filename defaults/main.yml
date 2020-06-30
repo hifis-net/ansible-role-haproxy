@@ -1,40 +1,50 @@
 ---
-#
+# HAProxy PPA version
+haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
+# HAProxy version
+haproxy_version: '2.1.*'
+# HAProxy user
 haproxy_user: 'haproxy'
-#
+# HAProxy group
 haproxy_group: 'haproxy'
-#
+# HAProxy dependencies to be installed
 haproxy_dependencies:
   - 'software-properties-common'
-#
-frontend_ip: '192.168.33.14'
-#
+# Frontend floating IP address
+frontend_ip: '192.168.33.100'
+# Backend GitLab IP address
 backend_ip: '192.168.33.10'
-#
+# Number of processors used by HAProxy
 haproxy_nbproc: '1'
-#
+# Number of threads used by HAProxy
 haproxy_nbthread: '2'
-#
+# HAProxy CPU Map
 haproxy_cpumap: 'auto:1/1-2 0-1'
-#
+# HAProxy name
+haproxy_name: 'haproxy'
+# HAProxy conf directory
+haproxy_conf_dir: '/etc/haproxy/'
+# HAProxy donf file path
+haproxy_conf_file_path: "{{ haproxy_conf_dir }}{{ haproxy_name }}.cfg"
+# HAProxy log directory
 haproxy_log: '/var/log/haproxy/'
-#
+# HAProxy socket file
 haproxy_socket: '/run/haproxy/admin.sock'
-#
+# HAProxy Certificate Data
 haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
-#
+# HAProxy SSL directory
 haproxy_ssl_certificate_dir: "/etc/haproxy/ssl"
-#
+# HAProxy Certificate file
 haproxy_ssl_certificate_key_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.crt"
-#
+# HAProxy Private Key file
 haproxy_ssl_certificate_cert_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.key"
-#
+# HAProxy combined Cerificate file
 haproxy_ssl_certificate_cert_file_combined: "{{ haproxy_ssl_certificate_dir }}/haproxy.pem"
-#
+# HAProxy dhparam file
 haproxy_ssl_certificate_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
-#
+# Stats admin user name
 stats_admin_user: 'admin'
-#
+# Stats admin user password
 stats_admin_user_password: 'changeme'
 
 ...

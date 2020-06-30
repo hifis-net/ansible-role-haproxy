@@ -6,7 +6,6 @@
 #
 - name: Set ip_forward.
   become: yes
-  become_user: root
   sysctl:
     name: net.ipv4.ip_forward
     value: 1
@@ -16,7 +15,6 @@
 #
 - name: Set ip_nonlocal_bind.
   become: yes
-  become_user: root
   sysctl:
     name: net.ipv4.ip_nonlocal_bind
     value: 1
@@ -26,49 +24,43 @@
 #
 - name: Install dependencies.
   become: yes
-  become_user: root
   package:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items: "{{ haproxy_dependencies }}"
 #
-- name: Add PPA for HAproxy
+- name: Add PPA for HAProxy
   become: yes
-  become_user: root
   apt_repository:
-    repo: ppa:vbernat/haproxy-2.1
+    repo: "{{ haproxy_ppa_version }}"
     state: present
     validate_certs: yes
 #
 - name: Create HAProxy Configuration Directory.
   become: yes
-  become_user: root
   file:
-    path: /etc/haproxy/
+    path: "{{ haproxy_conf_dir }}"
     state: directory
     mode: '0755'
 #
 - name: Create HAProxy Configuration File.
   become: yes
-  become_user: root
   template:
     src: haproxy.cfg.j2
-    dest: "/etc/haproxy/haproxy.cfg"
+    dest: "{{ haproxy_conf_file_path }}"
     mode: '0644'
 #
 - name: Install "haproxy" package
   become: yes
-  become_user: root
   apt:
-    name: haproxy=2.1.*
+    name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
   when: "'haproxy' not in ansible_facts.packages"
   register: install_output
 #
 - name: Create HAProxy SSL folder.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_dir }}"
     state: directory
@@ -78,7 +70,6 @@
 #
 - name: Create Self-Signed Certificate.
   become: yes
-  become_user: root
   command: >
     openssl req -new -nodes -x509 -days 3650 -extensions v3_ca
     -subj "{{ haproxy_self_signed_certificate_data }}"
@@ -89,7 +80,6 @@
 #
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_key_file }}.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_key_file }}"
     owner: "{{ haproxy_user }}"
@@ -98,39 +88,42 @@
 #
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file }}.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_cert_file }}"
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0600'
 #
+- name: Check whether HAProxy SSL Certificate file exists.
+  stat:
+    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
+  register: haproxy_ssl_certificate_file
+#
 - name: Create file {{ haproxy_ssl_certificate_cert_file_combined }}.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
     state: touch
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0600'
+  when: not haproxy_ssl_certificate_file.stat.exists
 #
 - name: Combine Self-Signed Certificate Files.
   become: yes
-  become_user: root
-  command: "cat '{{ haproxy_ssl_certificate_cert_file }}' '{{ haproxy_ssl_certificate_key_file }}'"
+  command: "cat {{ haproxy_ssl_certificate_cert_file }} {{ haproxy_ssl_certificate_key_file }}"
   register: cat_command
+  when: not haproxy_ssl_certificate_file.stat.exists
 #
 - name: Copy the output to file
   become: yes
-  become_user: root
   copy:
     content: "{{ cat_command.stdout }}"
     dest: "{{ haproxy_ssl_certificate_cert_file_combined }}"
+  when: not haproxy_ssl_certificate_file.stat.exists and cat_command is defined
 #
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file_combined }}.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
     owner: "{{ haproxy_user }}"
@@ -139,14 +132,12 @@
 #
 - name: Create dhparam File.
   become: yes
-  become_user: root
   command: openssl dhparam -out {{ haproxy_ssl_certificate_dhparam_file }} 2048
   args:
     creates: "{{ haproxy_ssl_certificate_dhparam_file }}"
 #
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_dhparam_file }}.
   become: yes
-  become_user: root
   file:
     path: "{{ haproxy_ssl_certificate_dhparam_file }}"
     owner: "{{ haproxy_user }}"
@@ -155,9 +146,10 @@
 #
 - name: Register HAproxy Service.
   become: yes
-  become_user: root
-  service: "name=haproxy state=started enabled=yes"
-  when: "install_output.changed == True"
+  service:
+    name: "{{ haproxy_name }}"
+    state: started
+    enabled: yes
   notify: Restart HAproxy
 
 ...

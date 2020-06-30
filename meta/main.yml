@@ -1,11 +1,13 @@
 galaxy_info:
+  role_name: haproxy_role
+
   author: HIFIS Software Team
   description: Research Software Engineers
   company: Helmholtz Association
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
-  # issue_tracker_url: http://example.com/issue/tracker
+  issue_tracker_url: https://gitlab.com/hifis/ansible/haproxy-role/-/issues
 
   # Choose a valid license ID from https://spdx.org - some suggested licenses:
   # - BSD-3-Clause (default)
@@ -38,6 +40,10 @@ galaxy_info:
   #   - 1.0
   #   - 7
   #   - 99.99
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes

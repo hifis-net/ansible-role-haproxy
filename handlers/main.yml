@@ -2,5 +2,8 @@
 #
 - name: Restart HAproxy
   become: yes
-  become_user: root
-  service: "name=haproxy state=restarted"
+  service:
+    name: "{{ haproxy_name }}"
+    state: restarted
+
+...
