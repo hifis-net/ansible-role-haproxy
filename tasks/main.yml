@@ -4,11 +4,40 @@
   package_facts:
     manager: auto
 #
+- name: Set ip_forward.
+  become: yes
+  become_user: root
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+    sysctl_set: yes
+    reload: yes
+#
+- name: Set ip_nonlocal_bind.
+  become: yes
+  become_user: root
+  sysctl:
+    name: net.ipv4.ip_nonlocal_bind
+    value: 1
+    state: present
+    sysctl_set: yes
+    reload: yes
+#
+- name: Install dependencies.
+  become: yes
+  become_user: root
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ haproxy_dependencies }}"
+#
 - name: Add PPA for HAproxy
   become: yes
   become_user: root
   apt_repository:
-    repo: ppa:vbernat/haproxy-2.0
+    repo: ppa:vbernat/haproxy-2.1
     state: present
     validate_certs: yes
 #
@@ -18,7 +47,7 @@
   file:
     path: /etc/haproxy/
     state: directory
-    mode: 0755
+    mode: '0755'
 #
 - name: Create HAProxy Configuration File.
   become: yes
@@ -26,16 +55,103 @@
   template:
     src: haproxy.cfg.j2
     dest: "/etc/haproxy/haproxy.cfg"
-    mode: 0644
+    mode: '0644'
 #
 - name: Install "haproxy" package
   become: yes
   become_user: root
   apt:
-    name: haproxy=2.0.*
+    name: haproxy=2.1.*
     update_cache: yes
   when: "'haproxy' not in ansible_facts.packages"
   register: install_output
+#
+- name: Create HAProxy SSL folder.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_dir }}"
+    state: directory
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0755'
+#
+- name: Create Self-Signed Certificate.
+  become: yes
+  become_user: root
+  command: >
+    openssl req -new -nodes -x509 -days 3650 -extensions v3_ca
+    -subj "{{ haproxy_self_signed_certificate_data }}"
+    -keyout {{ haproxy_ssl_certificate_key_file }}
+    -out {{ haproxy_ssl_certificate_cert_file }}
+  args:
+    creates: "{{ haproxy_ssl_certificate_cert_file }}"
+#
+- name: Give secure permissions to file {{ haproxy_ssl_certificate_key_file }}.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_key_file }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0600'
+#
+- name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file }}.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_cert_file }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0600'
+#
+- name: Create file {{ haproxy_ssl_certificate_cert_file_combined }}.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
+    state: touch
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0600'
+#
+- name: Combine Self-Signed Certificate Files.
+  become: yes
+  become_user: root
+  command: "cat '{{ haproxy_ssl_certificate_cert_file }}' '{{ haproxy_ssl_certificate_key_file }}'"
+  register: cat_command
+#
+- name: Copy the output to file
+  become: yes
+  become_user: root
+  copy:
+    content: "{{ cat_command.stdout }}"
+    dest: "{{ haproxy_ssl_certificate_cert_file_combined }}"
+#
+- name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file_combined }}.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0644'
+#
+- name: Create dhparam File.
+  become: yes
+  become_user: root
+  command: openssl dhparam -out {{ haproxy_ssl_certificate_dhparam_file }} 2048
+  args:
+    creates: "{{ haproxy_ssl_certificate_dhparam_file }}"
+#
+- name: Give secure permissions to file {{ haproxy_ssl_certificate_dhparam_file }}.
+  become: yes
+  become_user: root
+  file:
+    path: "{{ haproxy_ssl_certificate_dhparam_file }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0644'
 #
 - name: Register HAproxy Service.
   become: yes
@@ -43,3 +159,5 @@
   service: "name=haproxy state=started enabled=yes"
   when: "install_output.changed == True"
   notify: Restart HAproxy
+
+...

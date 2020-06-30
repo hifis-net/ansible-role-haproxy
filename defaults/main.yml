@@ -1,1 +1,40 @@
 ---
+#
+haproxy_user: 'haproxy'
+#
+haproxy_group: 'haproxy'
+#
+haproxy_dependencies:
+  - 'software-properties-common'
+#
+frontend_ip: '192.168.33.14'
+#
+backend_ip: '192.168.33.10'
+#
+haproxy_nbproc: '1'
+#
+haproxy_nbthread: '2'
+#
+haproxy_cpumap: 'auto:1/1-2 0-1'
+#
+haproxy_log: '/var/log/haproxy/'
+#
+haproxy_socket: '/run/haproxy/admin.sock'
+#
+haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
+#
+haproxy_ssl_certificate_dir: "/etc/haproxy/ssl"
+#
+haproxy_ssl_certificate_key_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.crt"
+#
+haproxy_ssl_certificate_cert_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.key"
+#
+haproxy_ssl_certificate_cert_file_combined: "{{ haproxy_ssl_certificate_dir }}/haproxy.pem"
+#
+haproxy_ssl_certificate_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
+#
+stats_admin_user: 'admin'
+#
+stats_admin_user_password: 'changeme'
+
+...
