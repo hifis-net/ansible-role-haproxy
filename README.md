@@ -19,7 +19,201 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+
+###### HAProxy PPA version
+
+Variable to pin the PPA version to a certain value:
+
+```yaml
+haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
+```
+
+###### HAProxy version
+
+Variable to pin the HAProxy version to a certain value:
+
+```yaml
+haproxy_version: '2.1.*'
+```
+
+###### HAProxy user
+
+Variable to specify the HAProxy system user:
+
+```yaml
+haproxy_user: 'haproxy'
+```
+
+###### HAProxy group
+
+Variable to specify the HAProxy system group:
+
+```yaml
+haproxy_group: 'haproxy'
+```
+
+###### HAProxy HAProxy dependencies to be installed
+
+List of HAProxy dependencies to be installed:
+
+```yaml
+haproxy_dependencies:
+  - 'software-properties-common'
+```
+
+###### Number of processors used by HAProxy
+
+Sets number of processors used by HAProxy:
+
+```yaml
+haproxy_nbproc: '1'
+```
+
+###### Number of threads used by HAProxy
+
+Sets number of threads used by HAProxy:
+
+```yaml
+haproxy_nbthread: '2'
+```
+
+###### HAProxy CPU Map for Multithreading
+
+Mapping threads to CPU cores:
+
+```yaml
+haproxy_cpumap: 'auto:1/1-2 0-1'
+```
+
+###### HAProxy binary name
+
+Name of the HAProxy binary:
+
+```yaml
+haproxy_name: 'haproxy'
+```
+
+###### HAProxy configuration directory path
+
+Give the path to the HAProxy configuration directory:
+
+```yaml
+haproxy_conf_dir: '/etc/haproxy/'
+```
+
+###### HAProxy configuration file path
+
+Give the path to the HAProxy configuration file:
+
+```yaml
+haproxy_conf_file_path: "/etc/haproxy/haproxy.cfg"
+```
+
+###### HAProxy logging directory path
+
+Give the path to the HAProxy logging directory:
+
+```yaml
+haproxy_log: '/var/log/haproxy/'
+```
+
+###### HAProxy socket file path
+
+Give the path to the HAProxy socket file:
+
+```yaml
+haproxy_socket: '/run/haproxy/admin.sock'
+```
+
+###### HAProxy SSL directory path
+
+Give the path to the HAProxy SSL directory:
+
+```yaml
+haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
+```
+
+###### HAProxy Certificate file path
+
+Give the path to the HAProxy certificate file:
+
+```yaml
+haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.crt"
+```
+
+###### HAProxy Private Key file path
+
+Give the path to the HAProxy private key file:
+
+```yaml
+haproxy_ssl_certificate_cert_file: "/etc/haproxy/ssl/haproxy.key"
+```
+
+###### HAProxy combined Certificate and Private Key file path
+
+Give the path to the combined Certificate and Private Key file:
+
+```yaml
+haproxy_ssl_certificate_cert_file_combined: "/etc/haproxy/ssl/haproxy.pem"
+```
+
+###### HAProxy dhparam file path
+
+Give the path to the dhparam file:
+
+```yaml
+haproxy_ssl_certificate_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
+```
+
+###### Backend GitLab IP addresses
+
+Specify a list of backends with name and IP address:
+ 
+```yaml
+backends:
+  - backend_name: 'gitlab_server_1'
+    backend_id: '192.168.33.10'
+```
+
+###### Frontend floating IP address
+
+Specify the floating IP address of the frontend:
+
+```yaml
+frontend_ip: '192.168.33.100'
+```
+
+###### HAProxy Certificate Data for the Self-Signed SSL Certificate
+
+For a Self-Signed SSL Certificate you need at least these data:
+
+```yaml
+haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
+```
+
+###### Enable/disable stats
+
+Variable to enable or disable the stats:
+
+```yaml
+stats_enable: 'enable'
+```
+
+###### Stats admin user name
+
+Variable to hold the stats admin user name:
+
+```yaml
+stats_admin_user: 'admin'
+```
+
+###### Stats admin user password
+
+Variable to hold the stats admin user password:
+
+```yaml
+stats_admin_user_password: 'changeme'
+```
 
 Dependencies
 ------------

@@ -49,7 +49,7 @@ frontend haproxy_https
 
 frontend haproxy_stats
     bind  *:9000 ssl crt {{ haproxy_ssl_certificate_cert_file_combined }} alpn h2,http1.1
-    stats enable
+    stats {{ stats_enable }}
     stats uri /stats
     stats hide-version
     stats auth {{ stats_admin_user }}:{{ stats_admin_user_password }}
@@ -61,4 +61,7 @@ backend gitlab
     option httpchk HEAD /
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     default-server check maxconn 20
-    server gitlab_server_1 {{ backend_ip }}:80 check
+    {% for backend in backends %}
+    server {{ backend.backend_name }} {{ backend.backend_ip }}:80 check
+    {% endfor %}
+

@@ -15,10 +15,6 @@ haproxy_group: 'haproxy'
 # HAProxy dependencies to be installed
 haproxy_dependencies:
   - 'software-properties-common'
-# Frontend floating IP address
-frontend_ip: '192.168.33.100'
-# Backend GitLab IP address
-backend_ip: '192.168.33.10'
 # Number of processors used by HAProxy
 haproxy_nbproc: '1'
 # Number of threads used by HAProxy
@@ -35,8 +31,6 @@ haproxy_conf_file_path: "{{ haproxy_conf_dir }}{{ haproxy_name }}.cfg"
 haproxy_log: '/var/log/haproxy/'
 # HAProxy socket file
 haproxy_socket: '/run/haproxy/admin.sock'
-# HAProxy Certificate Data
-haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
 # HAProxy SSL directory
 haproxy_ssl_certificate_dir: "/etc/haproxy/ssl"
 # HAProxy Certificate file
@@ -47,9 +41,20 @@ haproxy_ssl_certificate_cert_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.ke
 haproxy_ssl_certificate_cert_file_combined: "{{ haproxy_ssl_certificate_dir }}/haproxy.pem"
 # HAProxy dhparam file
 haproxy_ssl_certificate_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
+# Backend GitLab IP addresses
+backends:
+  - backend_name: 'gitlab_server_1'
+    backend_ip: '192.168.33.10'
+# Frontend floating IP address
+frontend_ip: '192.168.33.100'
+# HAProxy Certificate Data
+haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
+# Enable/disable stats
+stats_enable: 'enable'
 # Stats admin user name
 stats_admin_user: 'admin'
 # Stats admin user password
 stats_admin_user_password: 'changeme'
+
 
 ...
