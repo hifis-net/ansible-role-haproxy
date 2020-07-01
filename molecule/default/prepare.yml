@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
+# SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - name: Prepare
   hosts: all
@@ -10,3 +15,5 @@
           - gnupg2    # for use with "apt-key export"
           - software-properties-common # for use with "apt-repository"
         state: present
+
+...

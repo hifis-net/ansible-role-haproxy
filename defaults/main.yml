@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
+# SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # HAProxy PPA version
 haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
