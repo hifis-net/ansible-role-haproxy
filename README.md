@@ -19,6 +19,83 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
+#### Compulsory Variables to be Changed for the Configuration File
+
+###### Number of processors used by HAProxy
+
+Sets number of processors used by HAProxy:
+
+```yaml
+haproxy_nbproc: '1'
+```
+
+###### Number of threads used by HAProxy
+
+Sets number of threads used by HAProxy:
+
+```yaml
+haproxy_nbthread: '2'
+```
+
+###### HAProxy CPU Map for Multithreading
+
+Mapping threads to CPU cores:
+
+```yaml
+haproxy_cpumap: 'auto:1/1-2 0-1'
+```
+
+###### Backend GitLab IP addresses
+
+Specify a list of backends with name and IP address:
+ 
+```yaml
+backends:
+  - backend_name: 'gitlab_server_1'
+    backend_id: '192.168.33.10'
+```
+
+###### Frontend floating IP address
+
+Specify the floating IP address of the frontend:
+
+```yaml
+frontend_ip: '192.168.33.100'
+```
+
+###### HAProxy Certificate Data for the Self-Signed SSL Certificate
+
+For a Self-Signed SSL Certificate you need at least these data:
+
+```yaml
+haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
+```
+
+###### Enable/disable stats
+
+Variable to enable or disable the stats:
+
+```yaml
+stats_enable: 'enable'
+```
+
+###### Stats admin user name
+
+Variable to hold the stats admin user name:
+
+```yaml
+stats_admin_user: 'admin'
+```
+
+###### Stats admin user password
+
+Variable to hold the stats admin user password:
+
+```yaml
+stats_admin_user_password: 'changeme'
+```
+
+#### All other Default Variables
 
 ###### HAProxy PPA version
 
@@ -59,30 +136,6 @@ List of HAProxy dependencies to be installed:
 ```yaml
 haproxy_dependencies:
   - 'software-properties-common'
-```
-
-###### Number of processors used by HAProxy
-
-Sets number of processors used by HAProxy:
-
-```yaml
-haproxy_nbproc: '1'
-```
-
-###### Number of threads used by HAProxy
-
-Sets number of threads used by HAProxy:
-
-```yaml
-haproxy_nbthread: '2'
-```
-
-###### HAProxy CPU Map for Multithreading
-
-Mapping threads to CPU cores:
-
-```yaml
-haproxy_cpumap: 'auto:1/1-2 0-1'
 ```
 
 ###### HAProxy binary name
@@ -163,56 +216,6 @@ Give the path to the dhparam file:
 
 ```yaml
 haproxy_ssl_certificate_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
-```
-
-###### Backend GitLab IP addresses
-
-Specify a list of backends with name and IP address:
- 
-```yaml
-backends:
-  - backend_name: 'gitlab_server_1'
-    backend_id: '192.168.33.10'
-```
-
-###### Frontend floating IP address
-
-Specify the floating IP address of the frontend:
-
-```yaml
-frontend_ip: '192.168.33.100'
-```
-
-###### HAProxy Certificate Data for the Self-Signed SSL Certificate
-
-For a Self-Signed SSL Certificate you need at least these data:
-
-```yaml
-haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
-```
-
-###### Enable/disable stats
-
-Variable to enable or disable the stats:
-
-```yaml
-stats_enable: 'enable'
-```
-
-###### Stats admin user name
-
-Variable to hold the stats admin user name:
-
-```yaml
-stats_admin_user: 'admin'
-```
-
-###### Stats admin user password
-
-Variable to hold the stats admin user password:
-
-```yaml
-stats_admin_user_password: 'changeme'
 ```
 
 Dependencies

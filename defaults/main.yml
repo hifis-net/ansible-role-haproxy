@@ -56,5 +56,4 @@ stats_admin_user: 'admin'
 # Stats admin user password
 stats_admin_user_password: 'changeme'
 
-
 ...

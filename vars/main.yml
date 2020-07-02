@@ -4,4 +4,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# vars file for haproxy_role_init_master
+# vars file for haproxy_role

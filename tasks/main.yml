@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-#
+# Collect information about installed packages.
 - name: Gather package facts
   package_facts:
     manager: auto
-#
+# Ennable IP Forwarding.
 - name: Set ip_forward.
   become: yes
   sysctl:
@@ -17,7 +17,7 @@
     state: present
     sysctl_set: yes
     reload: yes
-#
+# Enable binding to non-local IP.
 - name: Set ip_nonlocal_bind.
   become: yes
   sysctl:
@@ -26,7 +26,7 @@
     state: present
     sysctl_set: yes
     reload: yes
-#
+# Install dependencies necessary for installing HAProxy.
 - name: Install dependencies.
   become: yes
   package:
@@ -34,28 +34,28 @@
     state: present
     update_cache: yes
   with_items: "{{ haproxy_dependencies }}"
-#
+# Add PPA for HAProxy.
 - name: Add PPA for HAProxy
   become: yes
   apt_repository:
     repo: "{{ haproxy_ppa_version }}"
     state: present
     validate_certs: yes
-#
+# Create directory to contain configuration file.
 - name: Create HAProxy Configuration Directory.
   become: yes
   file:
     path: "{{ haproxy_conf_dir }}"
     state: directory
     mode: '0755'
-#
+# Create configuration file for HAProxy.
 - name: Create HAProxy Configuration File.
   become: yes
   template:
     src: haproxy.cfg.j2
     dest: "{{ haproxy_conf_file_path }}"
     mode: '0644'
-#
+# Install PPA package for HAProxy.
 - name: Install "haproxy" package
   become: yes
   apt:
@@ -63,7 +63,7 @@
     update_cache: yes
   when: "'haproxy' not in ansible_facts.packages"
   register: install_output
-#
+# Create directory to contain SSL files.
 - name: Create HAProxy SSL folder.
   become: yes
   file:
@@ -72,7 +72,7 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0755'
-#
+# Create a Self-Signed Certificate with Private Key and Certificate file.
 - name: Create Self-Signed Certificate.
   become: yes
   command: >
@@ -82,7 +82,7 @@
     -out {{ haproxy_ssl_certificate_cert_file }}
   args:
     creates: "{{ haproxy_ssl_certificate_cert_file }}"
-#
+# Adapt file permissions of private key to more secure ones.
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_key_file }}.
   become: yes
   file:
@@ -90,7 +90,7 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0600'
-#
+# Adapt file permissions of certificate to more secure ones.
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file }}.
   become: yes
   file:
@@ -98,12 +98,12 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0600'
-#
+# Check that HAProxy SSL Certificate file exists.
 - name: Check whether HAProxy SSL Certificate file exists.
   stat:
     path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
   register: haproxy_ssl_certificate_file
-#
+# Create file to contain certificate file and private key file for HAProxy.
 - name: Create file {{ haproxy_ssl_certificate_cert_file_combined }}.
   become: yes
   file:
@@ -113,20 +113,20 @@
     group: "{{ haproxy_group }}"
     mode: '0600'
   when: not haproxy_ssl_certificate_file.stat.exists
-#
+# Create string of combined certificate file and private key file.
 - name: Combine Self-Signed Certificate Files.
   become: yes
   command: "cat {{ haproxy_ssl_certificate_cert_file }} {{ haproxy_ssl_certificate_key_file }}"
   register: cat_command
   when: not haproxy_ssl_certificate_file.stat.exists
-#
+# Output combined certificate file and private key file into file.
 - name: Copy the output to file
   become: yes
   copy:
     content: "{{ cat_command.stdout }}"
     dest: "{{ haproxy_ssl_certificate_cert_file_combined }}"
   when: not haproxy_ssl_certificate_file.stat.exists and cat_command is defined
-#
+# Adapt file permissions of combined certificate file and private key file to more secure ones.
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file_combined }}.
   become: yes
   file:
@@ -134,13 +134,13 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0644'
-#
+# Create dhparam file.
 - name: Create dhparam File.
   become: yes
   command: openssl dhparam -out {{ haproxy_ssl_certificate_dhparam_file }} 2048
   args:
     creates: "{{ haproxy_ssl_certificate_dhparam_file }}"
-#
+# Adapt file permissions of dhparam file to more secure ones.
 - name: Give secure permissions to file {{ haproxy_ssl_certificate_dhparam_file }}.
   become: yes
   file:
@@ -148,7 +148,7 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0644'
-#
+# Register service to start at boot time.
 - name: Register HAproxy Service.
   become: yes
   service:
