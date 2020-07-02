@@ -162,12 +162,12 @@ Give the path to the HAProxy configuration file:
 haproxy_conf_file_path: "/etc/haproxy/haproxy.cfg"
 ```
 
-###### HAProxy logging directory path
+###### HAProxy logging socket path
 
-Give the path to the HAProxy logging directory:
+Give the path to the HAProxy logging socket:
 
 ```yaml
-haproxy_log: '/var/log/haproxy/'
+haproxy_log_socket: '/dev/log'
 ```
 
 ###### HAProxy socket file path
@@ -191,7 +191,7 @@ haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
 Give the path to the HAProxy certificate file:
 
 ```yaml
-haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.crt"
+haproxy_ssl_certificate_crt_file: "/etc/haproxy/ssl/haproxy.crt"
 ```
 
 ###### HAProxy Private Key file path
@@ -199,7 +199,7 @@ haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.crt"
 Give the path to the HAProxy private key file:
 
 ```yaml
-haproxy_ssl_certificate_cert_file: "/etc/haproxy/ssl/haproxy.key"
+haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.key"
 ```
 
 ###### HAProxy combined Certificate and Private Key file path
@@ -207,7 +207,7 @@ haproxy_ssl_certificate_cert_file: "/etc/haproxy/ssl/haproxy.key"
 Give the path to the combined Certificate and Private Key file:
 
 ```yaml
-haproxy_ssl_certificate_cert_file_combined: "/etc/haproxy/ssl/haproxy.pem"
+haproxy_ssl_certificate_chain_file: "/etc/haproxy/ssl/haproxy.pem"
 ```
 
 ###### HAProxy dhparam file path
@@ -215,7 +215,7 @@ haproxy_ssl_certificate_cert_file_combined: "/etc/haproxy/ssl/haproxy.pem"
 Give the path to the dhparam file:
 
 ```yaml
-haproxy_ssl_certificate_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
+haproxy_ssl_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
 ```
 
 Dependencies

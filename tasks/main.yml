@@ -13,7 +13,7 @@
   become: yes
   sysctl:
     name: net.ipv4.ip_forward
-    value: 1
+    value: '1'
     state: present
     sysctl_set: yes
     reload: yes
@@ -22,7 +22,7 @@
   become: yes
   sysctl:
     name: net.ipv4.ip_nonlocal_bind
-    value: 1
+    value: '1'
     state: present
     sysctl_set: yes
     reload: yes
@@ -41,12 +41,21 @@
     repo: "{{ haproxy_ppa_version }}"
     state: present
     validate_certs: yes
+# Install PPA package for HAProxy.
+- name: Install "haproxy" package
+  become: yes
+  package:
+    name: "{{ haproxy_name }}={{ haproxy_version }}"
+    update_cache: yes
+  when: "'haproxy' not in ansible_facts.packages"
 # Create directory to contain configuration file.
 - name: Create HAProxy Configuration Directory.
   become: yes
   file:
     path: "{{ haproxy_conf_dir }}"
     state: directory
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
     mode: '0755'
 # Create configuration file for HAProxy.
 - name: Create HAProxy Configuration File.
@@ -54,15 +63,10 @@
   template:
     src: haproxy.cfg.j2
     dest: "{{ haproxy_conf_file_path }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
     mode: '0644'
-# Install PPA package for HAProxy.
-- name: Install "haproxy" package
-  become: yes
-  apt:
-    name: "{{ haproxy_name }}={{ haproxy_version }}"
-    update_cache: yes
-  when: "'haproxy' not in ansible_facts.packages"
-  register: install_output
+  notify: Restart HAProxy
 # Create directory to contain SSL files.
 - name: Create HAProxy SSL folder.
   become: yes
@@ -72,89 +76,57 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0755'
-# Create a Self-Signed Certificate with Private Key and Certificate file.
-- name: Create Self-Signed Certificate.
+#
+- name: Generate an OpenSSL private key (4096 bits)
   become: yes
-  command: >
-    openssl req -new -nodes -x509 -days 3650 -extensions v3_ca
-    -subj "{{ haproxy_self_signed_certificate_data }}"
-    -keyout {{ haproxy_ssl_certificate_key_file }}
-    -out {{ haproxy_ssl_certificate_cert_file }}
-  args:
-    creates: "{{ haproxy_ssl_certificate_cert_file }}"
-# Adapt file permissions of private key to more secure ones.
-- name: Give secure permissions to file {{ haproxy_ssl_certificate_key_file }}.
-  become: yes
-  file:
+  openssl_privatekey:
     path: "{{ haproxy_ssl_certificate_key_file }}"
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0600'
-# Adapt file permissions of certificate to more secure ones.
-- name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file }}.
+    size: '4096'
+    type: 'RSA'
+#
+- name: Generate an OpenSSL Certificate Signing Request
   become: yes
-  file:
-    path: "{{ haproxy_ssl_certificate_cert_file }}"
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0600'
-# Check that HAProxy SSL Certificate file exists.
-- name: Check whether HAProxy SSL Certificate file exists.
-  stat:
-    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
-  register: haproxy_ssl_certificate_file
-# Create file to contain certificate file and private key file for HAProxy.
-- name: Create file {{ haproxy_ssl_certificate_cert_file_combined }}.
+  openssl_csr:
+    path: "{{ haproxy_ssl_certificate_csr_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    country_name: "{{ country_name }}"
+    state_or_province_name: "{{ state_or_province_name }}"
+    locality_name: "{{ locality_name }}"
+    organization_name: "{{ organization_name }}"
+    organizational_unit_name: "{{ organizational_unit_name }}"
+    email_address: "{{ email_address }}"
+    common_name: "{{ common_name }}"
+#
+- name: Generate a Self Signed OpenSSL certificate
   become: yes
-  file:
-    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
-    state: touch
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0600'
-  when: not haproxy_ssl_certificate_file.stat.exists
-# Create string of combined certificate file and private key file.
-- name: Combine Self-Signed Certificate Files.
+  openssl_certificate:
+    path: "{{ haproxy_ssl_certificate_crt_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    csr_path: "{{ haproxy_ssl_certificate_csr_file }}"
+    provider: 'selfsigned'
+#
+- name: Generate PKCS12 file
   become: yes
-  command: "cat {{ haproxy_ssl_certificate_cert_file }} {{ haproxy_ssl_certificate_key_file }}"
-  register: cat_command
-  when: not haproxy_ssl_certificate_file.stat.exists
-# Output combined certificate file and private key file into file.
-- name: Copy the output to file
+  openssl_pkcs12:
+    action: export
+    path: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+    certificate_path: "{{ haproxy_ssl_certificate_crt_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    state: present
+    friendly_name: 'pkcs12_file'
+#
+- name: Parse PKCS12 file
   become: yes
-  copy:
-    content: "{{ cat_command.stdout }}"
-    dest: "{{ haproxy_ssl_certificate_cert_file_combined }}"
-  when: not haproxy_ssl_certificate_file.stat.exists and cat_command is defined
-# Adapt file permissions of combined certificate file and private key file to more secure ones.
-- name: Give secure permissions to file {{ haproxy_ssl_certificate_cert_file_combined }}.
+  openssl_pkcs12:
+    action: parse
+    src: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+    path: "{{ haproxy_ssl_certificate_chain_file }}"
+    state: present
+#
+- name: Generate DH Parameters (2048 bits)
   become: yes
-  file:
-    path: "{{ haproxy_ssl_certificate_cert_file_combined }}"
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0644'
-# Create dhparam file.
-- name: Create dhparam File.
-  become: yes
-  command: openssl dhparam -out {{ haproxy_ssl_certificate_dhparam_file }} 2048
-  args:
-    creates: "{{ haproxy_ssl_certificate_dhparam_file }}"
-# Adapt file permissions of dhparam file to more secure ones.
-- name: Give secure permissions to file {{ haproxy_ssl_certificate_dhparam_file }}.
-  become: yes
-  file:
-    path: "{{ haproxy_ssl_certificate_dhparam_file }}"
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0644'
-# Register service to start at boot time.
-- name: Register HAproxy Service.
-  become: yes
-  service:
-    name: "{{ haproxy_name }}"
-    state: started
-    enabled: yes
-  notify: Restart HAproxy
+  openssl_dhparam:
+    path: "{{ haproxy_ssl_dhparam_file }}"
+    size: 2048
 
 ...

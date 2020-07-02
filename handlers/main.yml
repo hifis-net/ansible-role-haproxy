@@ -5,7 +5,7 @@
 
 ---
 # Task to restart the HAProxy service.
-- name: Restart HAproxy
+- name: Restart HAProxy
   become: yes
   service:
     name: "{{ haproxy_name }}"
