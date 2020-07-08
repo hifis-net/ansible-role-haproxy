@@ -63,14 +63,6 @@ Specify the floating IP address of the frontend:
 frontend_ip: '192.168.33.100'
 ```
 
-###### HAProxy Certificate Data for the Self-Signed SSL Certificate
-
-For a Self-Signed SSL Certificate you need at least these data:
-
-```yaml
-haproxy_self_signed_certificate_data: "/C=DE/ST=Saxony/L=Dresden/O=Helmholtz-Zentrum Dresden-Rossendorf (HZDR)/CN=haproxy"
-```
-
 ###### Enable/disable stats
 
 Variable to enable or disable the stats:
@@ -178,6 +170,65 @@ Give the path to the HAProxy socket file:
 haproxy_socket: '/run/haproxy/admin.sock'
 ```
 
+
+
+
+###### Country Name for SSL certificate
+
+Set country to be used for the SSL certificate:
+
+```yaml
+country_name: 'DE'
+```
+
+###### State name for SSL certificate
+
+Set state to be used for the SSL certificate:
+
+```yaml
+state_or_province_name: 'Saxony'
+```
+
+###### Locality Name for SSL certificate
+
+Set locality to be used for the SSL certificate:
+
+```yaml
+locality_name: 'Dresden'
+```
+
+###### Organization name for SSL certificate
+
+Set organization to be used for the SSL certificate:
+
+```yaml
+organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
+```
+
+###### Organization Unit Name for SSL certificate
+
+Set organization unit to be used for the SSL certificate:
+
+```yaml
+organizational_unit_name: 'FWCC / Computational Science'
+```
+
+###### Email address for SSL certificate
+
+Set email address to be used for the SSL certificate:
+
+```yaml
+email_address: 'hifis-help@hzdr.de'
+```
+
+###### Common Name for SSL certificate
+
+Set common name to be used for the SSL certificate:
+
+```yaml
+common_name: 'Helmholtz Association'
+```
+
 ###### HAProxy SSL directory path
 
 Give the path to the HAProxy SSL directory:
@@ -186,33 +237,49 @@ Give the path to the HAProxy SSL directory:
 haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
 ```
 
-###### HAProxy Certificate file path
-
-Give the path to the HAProxy certificate file:
-
-```yaml
-haproxy_ssl_certificate_crt_file: "/etc/haproxy/ssl/haproxy.crt"
-```
-
 ###### HAProxy Private Key file path
 
-Give the path to the HAProxy private key file:
+Give the path to the HAProxy Private Key file:
 
 ```yaml
 haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.key"
 ```
 
-###### HAProxy combined Certificate and Private Key file path
+###### HAProxy Certificate Signing Request file path
 
-Give the path to the combined Certificate and Private Key file:
+Give the path to the HAProxy Certificate Signing Request file:
+
+```yaml
+haproxy_ssl_certificate_csr_file: '/etc/haproxy/ssl/haproxy.csr'
+```
+
+###### HAProxy Certificate file path
+
+Give the path to the HAProxy Certificate file:
+
+```yaml
+haproxy_ssl_certificate_crt_file: "/etc/haproxy/ssl/haproxy.crt"
+```
+
+###### HAProxy PKCS12 file path
+
+Give the path to the HAProxy PKCS12 file:
+
+```yaml
+haproxy_ssl_certificate_pkcs12_file: "/etc/haproxy/ssl/haproxy.p12"
+```
+
+###### HAProxy Certificate Chain file path
+
+Give the path to the HAProxy Certificate Chain file:
 
 ```yaml
 haproxy_ssl_certificate_chain_file: "/etc/haproxy/ssl/haproxy.pem"
 ```
 
-###### HAProxy dhparam file path
+###### HAProxy DH Parameter file path
 
-Give the path to the dhparam file:
+Give the path to the DH Parameter file:
 
 ```yaml
 haproxy_ssl_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"

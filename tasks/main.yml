@@ -4,12 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# Collect information about installed packages.
 - name: Gather package facts
   package_facts:
     manager: auto
-# Ennable IP Forwarding.
-- name: Set ip_forward.
+
+- name: Enable ip_forward.
   become: yes
   sysctl:
     name: net.ipv4.ip_forward
@@ -17,8 +16,8 @@
     state: present
     sysctl_set: yes
     reload: yes
-# Enable binding to non-local IP.
-- name: Set ip_nonlocal_bind.
+
+- name: Enable ip_nonlocal_bind.
   become: yes
   sysctl:
     name: net.ipv4.ip_nonlocal_bind
@@ -26,29 +25,29 @@
     state: present
     sysctl_set: yes
     reload: yes
-# Install dependencies necessary for installing HAProxy.
-- name: Install dependencies.
+
+- name: Install dependencies of HAProxy.
   become: yes
   package:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items: "{{ haproxy_dependencies }}"
-# Add PPA for HAProxy.
+
 - name: Add PPA for HAProxy
   become: yes
   apt_repository:
     repo: "{{ haproxy_ppa_version }}"
     state: present
     validate_certs: yes
-# Install PPA package for HAProxy.
+
 - name: Install "haproxy" package
   become: yes
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
   when: "'haproxy' not in ansible_facts.packages"
-# Create directory to contain configuration file.
+
 - name: Create HAProxy Configuration Directory.
   become: yes
   file:
@@ -57,7 +56,7 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0755'
-# Create configuration file for HAProxy.
+
 - name: Create HAProxy Configuration File.
   become: yes
   template:
@@ -67,8 +66,8 @@
     group: "{{ haproxy_group }}"
     mode: '0644'
   notify: Restart HAProxy
-# Create directory to contain SSL files.
-- name: Create HAProxy SSL folder.
+
+- name: Create HAProxy SSL Directory.
   become: yes
   file:
     path: "{{ haproxy_ssl_certificate_dir }}"
@@ -76,14 +75,14 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0755'
-#
-- name: Generate an OpenSSL private key (4096 bits)
+
+- name: Generate an OpenSSL Private Key (4096 bits)
   become: yes
   openssl_privatekey:
     path: "{{ haproxy_ssl_certificate_key_file }}"
     size: '4096'
     type: 'RSA'
-#
+
 - name: Generate an OpenSSL Certificate Signing Request
   become: yes
   openssl_csr:
@@ -96,7 +95,7 @@
     organizational_unit_name: "{{ organizational_unit_name }}"
     email_address: "{{ email_address }}"
     common_name: "{{ common_name }}"
-#
+
 - name: Generate a Self Signed OpenSSL certificate
   become: yes
   openssl_certificate:
@@ -104,7 +103,7 @@
     privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
     csr_path: "{{ haproxy_ssl_certificate_csr_file }}"
     provider: 'selfsigned'
-#
+
 - name: Generate PKCS12 file
   become: yes
   openssl_pkcs12:
@@ -114,7 +113,7 @@
     privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
     state: present
     friendly_name: 'pkcs12_file'
-#
+
 - name: Parse PKCS12 file
   become: yes
   openssl_pkcs12:
@@ -122,8 +121,8 @@
     src: "{{ haproxy_ssl_certificate_pkcs12_file }}"
     path: "{{ haproxy_ssl_certificate_chain_file }}"
     state: present
-#
-- name: Generate DH Parameters (2048 bits)
+
+- name: Generate DH Parameter file (2048 bits)
   become: yes
   openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
