@@ -4,6 +4,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Check that all mandatory variables are defined.
+  assert:
+    that:
+      - backends is defined
+      - frontend_ip is defined
+    fail_msg: "Some mandatory variables are not set."
+    success_msg: "All mandatory variables are set."
+
 - name: Gather package facts
   package_facts:
     manager: auto

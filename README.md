@@ -19,7 +19,27 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-#### Compulsory Variables to be Changed for the Configuration File
+#### Compulsory variables which are not set per default
+
+###### Backend GitLab IP addresses
+
+Specify a list of backends with name and IP address:
+ 
+```yaml
+backends:
+  - backend_name: 'backend_server_1'
+    backend_id: '192.168.33.10'
+```
+
+###### Frontend floating IP address
+
+Specify the floating IP address of the frontend:
+
+```yaml
+frontend_ip: '192.168.33.100'
+```
+
+#### Compulsory variables which are set per default but need to be adapted
 
 ###### Number of processors used by HAProxy
 
@@ -43,24 +63,6 @@ Mapping threads to CPU cores:
 
 ```yaml
 haproxy_cpumap: 'auto:1/1-2 0-1'
-```
-
-###### Backend GitLab IP addresses
-
-Specify a list of backends with name and IP address:
- 
-```yaml
-backends:
-  - backend_name: 'gitlab_server_1'
-    backend_id: '192.168.33.10'
-```
-
-###### Frontend floating IP address
-
-Specify the floating IP address of the frontend:
-
-```yaml
-frontend_ip: '192.168.33.100'
 ```
 
 ###### Enable/disable stats

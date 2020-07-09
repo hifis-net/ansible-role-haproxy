@@ -11,5 +11,10 @@
     - name: "Include haproxy_role"
       include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+  vars:
+    frontend_ip: "192.168.33.100"
+    backends:
+      - backend_name: 'backend_server_1'
+        backend_ip: '192.168.33.10'
 
 ...

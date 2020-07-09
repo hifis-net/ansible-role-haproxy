@@ -59,12 +59,6 @@ haproxy_ssl_certificate_pkcs12_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.
 haproxy_ssl_certificate_chain_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.pem"
 # HAProxy DH Parameter file
 haproxy_ssl_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
-# Backend GitLab IP addresses
-backends:
-  - backend_name: 'gitlab_server_1'
-    backend_ip: '192.168.33.10'
-# Frontend floating IP address
-frontend_ip: '192.168.33.100'
 # Enable/disable stats
 stats_enable: 'enable'
 # Stats admin user name
