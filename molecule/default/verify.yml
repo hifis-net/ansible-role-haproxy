@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# Dummy play for verification steps.
 - name: Verify HAProxy
   hosts: all
   tasks:
