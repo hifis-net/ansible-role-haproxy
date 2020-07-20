@@ -37,10 +37,9 @@
 - name: Install dependencies of HAProxy.
   become: yes
   package:
-    name: "{{ item }}"
+    name: "{{ haproxy_dependencies }}"
     state: present
     update_cache: yes
-  with_items: "{{ haproxy_dependencies }}"
 
 - name: Add PPA for HAProxy
   become: yes
