@@ -124,10 +124,10 @@
     path: "{{ haproxy_ssl_certificate_chain_file }}"
     state: present
 
-- name: Generate DH Parameter file (2048 bits)
+- name: Generate DH Parameter file
   become: yes
   openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
-    size: 2048
+    size: 4096
 
 ...
