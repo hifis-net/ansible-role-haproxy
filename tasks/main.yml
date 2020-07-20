@@ -12,10 +12,6 @@
     fail_msg: "Some mandatory variables are not set."
     success_msg: "All mandatory variables are set."
 
-- name: Gather package facts
-  package_facts:
-    manager: auto
-
 - name: Enable ip_forward.
   become: yes
   sysctl:
@@ -53,7 +49,6 @@
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
-  when: "'haproxy' not in ansible_facts.packages"
 
 - name: Create HAProxy Configuration Directory.
   become: yes
