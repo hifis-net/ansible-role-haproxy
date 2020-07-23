@@ -1,2 +1,133 @@
+# SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
+# SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
-# tasks file for haproxy_role_init_master
+- name: Check that all mandatory variables are defined.
+  assert:
+    that:
+      - backends is defined
+      - frontend_ip is defined
+    fail_msg: "Some mandatory variables are not set."
+    success_msg: "All mandatory variables are set."
+
+- name: Enable ip_forward.
+  become: yes
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    sysctl_set: yes
+    reload: yes
+
+- name: Enable ip_nonlocal_bind.
+  become: yes
+  sysctl:
+    name: net.ipv4.ip_nonlocal_bind
+    value: '1'
+    state: present
+    sysctl_set: yes
+    reload: yes
+
+- name: Install dependencies of HAProxy.
+  become: yes
+  package:
+    name: "{{ haproxy_dependencies }}"
+    state: present
+    update_cache: yes
+
+- name: Add PPA for HAProxy
+  become: yes
+  apt_repository:
+    repo: "{{ haproxy_ppa_version }}"
+    state: present
+    validate_certs: yes
+
+- name: Install "haproxy" package
+  become: yes
+  package:
+    name: "{{ haproxy_name }}={{ haproxy_version }}"
+    update_cache: yes
+
+- name: Create HAProxy Configuration Directory.
+  become: yes
+  file:
+    path: "{{ haproxy_conf_dir }}"
+    state: directory
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0755'
+
+- name: Create HAProxy Configuration File.
+  become: yes
+  template:
+    src: haproxy.cfg.j2
+    dest: "{{ haproxy_conf_file_path }}"
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0644'
+  notify: Restart HAProxy
+
+- name: Create HAProxy SSL Directory.
+  become: yes
+  file:
+    path: "{{ haproxy_ssl_certificate_dir }}"
+    state: directory
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0755'
+
+- name: Generate an OpenSSL Private Key (4096 bits)
+  become: yes
+  openssl_privatekey:
+    path: "{{ haproxy_ssl_certificate_key_file }}"
+    size: '4096'
+    type: 'RSA'
+
+- name: Generate an OpenSSL Certificate Signing Request
+  become: yes
+  openssl_csr:
+    path: "{{ haproxy_ssl_certificate_csr_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    country_name: "{{ country_name }}"
+    state_or_province_name: "{{ state_or_province_name }}"
+    locality_name: "{{ locality_name }}"
+    organization_name: "{{ organization_name }}"
+    organizational_unit_name: "{{ organizational_unit_name }}"
+    email_address: "{{ email_address }}"
+    common_name: "{{ common_name }}"
+
+- name: Generate a Self Signed OpenSSL certificate
+  become: yes
+  openssl_certificate:
+    path: "{{ haproxy_ssl_certificate_crt_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    csr_path: "{{ haproxy_ssl_certificate_csr_file }}"
+    provider: 'selfsigned'
+
+- name: Generate PKCS12 file
+  become: yes
+  openssl_pkcs12:
+    action: export
+    path: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+    certificate_path: "{{ haproxy_ssl_certificate_crt_file }}"
+    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+    state: present
+    friendly_name: 'pkcs12_file'
+
+- name: Parse PKCS12 file
+  become: yes
+  openssl_pkcs12:
+    action: parse
+    src: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+    path: "{{ haproxy_ssl_certificate_chain_file }}"
+    state: present
+
+- name: Generate DH Parameter file
+  become: yes
+  openssl_dhparam:
+    path: "{{ haproxy_ssl_dhparam_file }}"
+    size: 4096
+
+...
