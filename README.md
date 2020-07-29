@@ -164,6 +164,16 @@ Give the path to the HAProxy logging socket:
 haproxy_log_socket: '/dev/log'
 ```
 
+###### HAProxy log level
+
+Specify the log level of HAProxy.
+Possible values are:
+`emerg, alert, crit, err, warning, notice, info, debug`.
+
+```yaml
+haproxy_log_level: 'info'
+```
+
 ###### HAProxy socket file path
 
 Give the path to the HAProxy socket file:
@@ -171,9 +181,6 @@ Give the path to the HAProxy socket file:
 ```yaml
 haproxy_socket: '/run/haproxy/admin.sock'
 ```
-
-
-
 
 ###### Country Name for SSL certificate
 

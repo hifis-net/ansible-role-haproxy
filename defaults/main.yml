@@ -5,9 +5,9 @@
 
 ---
 # HAProxy PPA version
-haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
+haproxy_ppa_version: 'ppa:vbernat/haproxy-2.2'
 # HAProxy version
-haproxy_version: '2.1.*'
+haproxy_version: '2.2.*'
 # HAProxy user
 haproxy_user: 'haproxy'
 # HAProxy group
@@ -29,6 +29,9 @@ haproxy_conf_dir: '/etc/haproxy'
 haproxy_conf_file_path: "{{ haproxy_conf_dir }}/{{ haproxy_name }}.cfg"
 # HAProxy log socket
 haproxy_log_socket: '/dev/log'
+# Log level of HAProxy, possible values are:
+# emerg, alert, crit, err, warning, notice, info, debug
+haproxy_log_level: 'info'
 # HAProxy socket file
 haproxy_socket: '/run/haproxy/admin.sock'
 # HAProxy SSL directory

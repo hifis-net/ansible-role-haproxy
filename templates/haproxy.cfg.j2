@@ -6,7 +6,7 @@
 global
     # global settings here
     maxconn 50000
-    log {{ haproxy_log_socket }} local0
+    log {{ haproxy_log_socket }} local0 {{ haproxy_log_level }}
     user {{ haproxy_user }}
     group {{ haproxy_group }}
     daemon
