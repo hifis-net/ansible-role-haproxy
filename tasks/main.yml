@@ -69,7 +69,7 @@
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
     mode: '0644'
-  notify: Restart HAProxy
+  notify: Reload HAProxy
 
 - name: Create HAProxy SSL Directory.
   become: yes
@@ -128,6 +128,7 @@
     mode: '0640'
     owner: 'root'
     group: "{{ haproxy_group }}"
+  notify: Reload HAProxy
 
 - name: Generate DH Parameter file
   become: yes
@@ -137,5 +138,6 @@
     mode: '0640'
     owner: 'root'
     group: "{{ haproxy_group }}"
+  notify: Reload HAProxy
 
 ...

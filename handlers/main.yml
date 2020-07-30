@@ -4,11 +4,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# Task to restart the HAProxy service.
 - name: Restart HAProxy
   become: yes
   service:
     name: "{{ haproxy_name }}"
     state: restarted
+
+- name: Reload HAProxy
+  become: yes
+  service:
+    name: "{{ haproxy_name }}"
+    state: reloaded
 
 ...
