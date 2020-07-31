@@ -5,9 +5,9 @@
 
 ---
 # HAProxy PPA version
-haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
+haproxy_ppa_version: 'ppa:vbernat/haproxy-2.2'
 # HAProxy version
-haproxy_version: '2.1.*'
+haproxy_version: '2.2.*'
 # HAProxy user
 haproxy_user: 'haproxy'
 # HAProxy group
