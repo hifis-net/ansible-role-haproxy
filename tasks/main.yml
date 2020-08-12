@@ -11,6 +11,7 @@
       - frontend_ip is defined
     fail_msg: "Some mandatory variables are not set."
     success_msg: "All mandatory variables are set."
+  when: haproxy_config_template == "haproxy.cfg.j2"
 
 - name: Enable ip_forward.
   become: yes
