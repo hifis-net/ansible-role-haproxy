@@ -70,7 +70,7 @@ haproxy_cpumap: 'auto:1/1-2 0-1'
 Variable to enable or disable the stats:
 
 ```yaml
-stats_enable: 'enable'
+haproxy_stats_enable: 'enable'
 ```
 
 ###### Stats admin user name
@@ -78,7 +78,7 @@ stats_enable: 'enable'
 Variable to hold the stats admin user name:
 
 ```yaml
-stats_admin_user: 'admin'
+haproxy_stats_admin_user: 'admin'
 ```
 
 ###### Stats admin user password
@@ -86,7 +86,7 @@ stats_admin_user: 'admin'
 Variable to hold the stats admin user password:
 
 ```yaml
-stats_admin_user_password: 'changeme'
+haproxy_stats_admin_user_password: 'changeme'
 ```
 
 #### All other Default Variables
@@ -187,7 +187,7 @@ haproxy_socket: '/run/haproxy/admin.sock'
 Set country to be used for the SSL certificate:
 
 ```yaml
-country_name: 'DE'
+haproxy_country_name: 'DE'
 ```
 
 ###### State name for SSL certificate
@@ -195,7 +195,7 @@ country_name: 'DE'
 Set state to be used for the SSL certificate:
 
 ```yaml
-state_or_province_name: 'Saxony'
+haproxy_state_or_province_name: 'Saxony'
 ```
 
 ###### Locality Name for SSL certificate
@@ -203,7 +203,7 @@ state_or_province_name: 'Saxony'
 Set locality to be used for the SSL certificate:
 
 ```yaml
-locality_name: 'Dresden'
+haproxy_locality_name: 'Dresden'
 ```
 
 ###### Organization name for SSL certificate
@@ -211,7 +211,7 @@ locality_name: 'Dresden'
 Set organization to be used for the SSL certificate:
 
 ```yaml
-organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
+haproxy_organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
 ```
 
 ###### Organization Unit Name for SSL certificate
@@ -219,7 +219,7 @@ organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
 Set organization unit to be used for the SSL certificate:
 
 ```yaml
-organizational_unit_name: 'FWCC / Computational Science'
+haproxy_organizational_unit_name: 'FWCC / Computational Science'
 ```
 
 ###### Email address for SSL certificate
@@ -227,7 +227,7 @@ organizational_unit_name: 'FWCC / Computational Science'
 Set email address to be used for the SSL certificate:
 
 ```yaml
-email_address: 'hifis-help@hzdr.de'
+haproxy_email_address: 'hifis-help@hzdr.de'
 ```
 
 ###### Common Name for SSL certificate
@@ -235,7 +235,7 @@ email_address: 'hifis-help@hzdr.de'
 Set common name to be used for the SSL certificate:
 
 ```yaml
-common_name: 'Helmholtz Association'
+haproxy_common_name: 'Helmholtz Association'
 ```
 
 ###### HAProxy SSL directory path
