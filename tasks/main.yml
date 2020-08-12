@@ -62,7 +62,7 @@
 - name: Create HAProxy Configuration File.
   become: yes
   template:
-    src: haproxy.cfg.j2
+    src: "{{ haproxy_config_template }}"
     dest: "{{ haproxy_conf_file_path }}"
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
