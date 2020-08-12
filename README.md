@@ -140,6 +140,15 @@ Name of the HAProxy binary:
 haproxy_name: 'haproxy'
 ```
 
+###### HAProxy configuration template
+
+Provide the path to the HAProxy configuration template:
+
+```yaml
+haproxy_config_template: 'haproxy.cfg.j2'
+```
+
+
 ###### HAProxy configuration directory path
 
 Give the path to the HAProxy configuration directory:

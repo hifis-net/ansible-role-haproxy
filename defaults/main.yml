@@ -23,6 +23,8 @@ haproxy_nbthread: '2'
 haproxy_cpumap: 'auto:1/1-2 0-1'
 # HAProxy name
 haproxy_name: 'haproxy'
+# HAProxy configuration template
+haproxy_config_template: 'haproxy.cfg.j2'
 # HAProxy configuration directory
 haproxy_conf_dir: '/etc/haproxy'
 # HAProxy configuration file path
