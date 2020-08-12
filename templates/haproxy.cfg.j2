@@ -49,10 +49,10 @@ frontend haproxy_https
 
 frontend haproxy_stats
     bind  *:9000 ssl crt {{ haproxy_ssl_certificate_chain_file }} alpn h2,http1.1
-    stats {{ stats_enable }}
+    stats {{ haproxy_stats_enable }}
     stats uri /stats
     stats hide-version
-    stats auth {{ stats_admin_user }}:{{ stats_admin_user_password }}
+    stats auth {{ haproxy_stats_admin_user }}:{{ haproxy_stats_admin_user_password }}
     stats admin if TRUE
 
 backend gitlab

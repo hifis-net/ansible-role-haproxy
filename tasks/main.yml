@@ -90,13 +90,13 @@
   openssl_csr:
     path: "{{ haproxy_ssl_certificate_csr_file }}"
     privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
-    country_name: "{{ country_name }}"
-    state_or_province_name: "{{ state_or_province_name }}"
-    locality_name: "{{ locality_name }}"
-    organization_name: "{{ organization_name }}"
-    organizational_unit_name: "{{ organizational_unit_name }}"
-    email_address: "{{ email_address }}"
-    common_name: "{{ common_name }}"
+    country_name: "{{ haproxy_country_name }}"
+    state_or_province_name: "{{ haproxy_state_or_province_name }}"
+    locality_name: "{{ haproxy_locality_name }}"
+    organization_name: "{{ haproxy_organization_name }}"
+    organizational_unit_name: "{{ haproxy_organizational_unit_name }}"
+    email_address: "{{ haproxy_email_address }}"
+    common_name: "{{ haproxy_common_name }}"
 
 - name: Generate a Self Signed OpenSSL certificate
   become: yes

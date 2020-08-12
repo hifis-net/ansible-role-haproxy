@@ -37,19 +37,19 @@ haproxy_socket: '/run/haproxy/admin.sock'
 # HAProxy SSL directory
 haproxy_ssl_certificate_dir: "/etc/haproxy/ssl"
 # Country name for SSL certificate
-country_name: 'DE'
+haproxy_country_name: 'DE'
 # State name for SSL certificate
-state_or_province_name: 'Saxony'
+haproxy_state_or_province_name: 'Saxony'
 # Locality name for SSL certificate
-locality_name: 'Dresden'
+haproxy_locality_name: 'Dresden'
 # Organization name for SSL certificate
-organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
+haproxy_organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
 # Organization unit name for SSL certificate
-organizational_unit_name: 'FWCC / Computational Science'
+haproxy_organizational_unit_name: 'FWCC / Computational Science'
 # Email address for SSL certificate
-email_address: 'hifis-help@hzdr.de'
+haproxy_email_address: 'hifis-help@hzdr.de'
 # Name for SSL certificate
-common_name: 'Helmholtz Association'
+haproxy_common_name: 'Helmholtz Association'
 # HAProxy Private Key file
 haproxy_ssl_certificate_key_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.key"
 # HAProxy Certificate Signing Request file
@@ -63,10 +63,10 @@ haproxy_ssl_certificate_chain_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.p
 # HAProxy DH Parameter file
 haproxy_ssl_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
 # Enable/disable stats
-stats_enable: 'enable'
+haproxy_stats_enable: 'enable'
 # Stats admin user name
-stats_admin_user: 'admin'
+haproxy_stats_admin_user: 'admin'
 # Stats admin user password
-stats_admin_user_password: 'changeme'
+haproxy_stats_admin_user_password: 'changeme'
 
 ...
