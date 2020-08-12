@@ -43,6 +43,7 @@
     repo: "{{ haproxy_ppa_version }}"
     state: present
     validate_certs: yes
+    mode: '0644'
 
 - name: Install "haproxy" package
   become: yes
