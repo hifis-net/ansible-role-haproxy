@@ -140,7 +140,7 @@ Name of the HAProxy binary:
 haproxy_name: 'haproxy'
 ```
 
-# HAProxy configuration template
+###### HAProxy configuration template
 
 Provide the path to the HAProxy configuration template:
 
