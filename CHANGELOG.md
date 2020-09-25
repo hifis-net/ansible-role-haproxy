@@ -20,7 +20,10 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.1.0...master)
 
-### Fixed
+### Changed
+- Improve and speed up the CI pipeline
+  ([!12](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/12)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
 - Add missing Pipfile.lock file and update Ansible to 2.10.0
   ([!11](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/11)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
