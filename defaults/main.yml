@@ -66,6 +66,8 @@ haproxy_ssl_certificate_pkcs12_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.
 haproxy_ssl_certificate_chain_file: "{{ haproxy_ssl_certificate_dir }}/haproxy.pem"
 # HAProxy DH Parameter file
 haproxy_ssl_dhparam_file: "{{ haproxy_ssl_certificate_dir }}/dhparam.pem"
+# Size in bits of generated DH-params
+haproxy_ssl_dhparam_size: 4096
 # Enable/disable stats
 haproxy_stats_enable: 'enable'
 # Stats admin user name
