@@ -117,6 +117,7 @@
     privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
     state: present
     friendly_name: 'pkcs12_file'
+  notify: Reload HAProxy
 
 - name: Parse PKCS12 file
   become: yes
