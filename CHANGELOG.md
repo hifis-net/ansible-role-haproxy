@@ -20,6 +20,11 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.1.0...master)
 
+### Added
+- Configure DH param size via variable
+  ([!15](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/15)
+  by [Normo](https://gitlab.com/Normo)).
+
 ### Changed
 - Improve and speed up the CI pipeline
   ([!12](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/12)

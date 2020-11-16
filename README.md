@@ -303,6 +303,14 @@ Give the path to the DH Parameter file:
 haproxy_ssl_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
 ```
 
+###### HAProxy DH Parameter size
+
+Size (in bits) of the generated DH-params:
+
+```yaml
+haproxy_ssl_dhparam_size: 4096
+```
+
 Dependencies
 ------------
 
