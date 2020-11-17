@@ -32,6 +32,9 @@ Group your changes into these categories:
 - Add missing Pipfile.lock file and update Ansible to 2.10.0
   ([!11](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/11)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+- Resolve "HAProxy isn't restarted/reloaded on SSL config change"
+  ([!16](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/16)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v0.1.0)
 
