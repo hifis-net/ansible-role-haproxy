@@ -71,65 +71,68 @@
     mode: '0644'
   notify: Reload HAProxy
 
-- name: Create HAProxy SSL Directory.
-  become: yes
-  file:
-    path: "{{ haproxy_ssl_certificate_dir }}"
-    state: directory
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0755'
+- name: Generate self-signed TLS certificate
+  when: haproxy_create_self_signed_cert | bool
+  block:
+    - name: Create HAProxy SSL Directory.
+      become: yes
+      file:
+        path: "{{ haproxy_ssl_certificate_dir }}"
+        state: directory
+        owner: "{{ haproxy_user }}"
+        group: "{{ haproxy_group }}"
+        mode: '0755'
 
-- name: Generate an OpenSSL Private Key (4096 bits)
-  become: yes
-  openssl_privatekey:
-    path: "{{ haproxy_ssl_certificate_key_file }}"
-    size: '4096'
-    type: 'RSA'
+    - name: Generate an OpenSSL Private Key (4096 bits)
+      become: yes
+      openssl_privatekey:
+        path: "{{ haproxy_ssl_certificate_key_file }}"
+        size: '4096'
+        type: 'RSA'
 
-- name: Generate an OpenSSL Certificate Signing Request
-  become: yes
-  openssl_csr:
-    path: "{{ haproxy_ssl_certificate_csr_file }}"
-    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
-    country_name: "{{ haproxy_country_name }}"
-    state_or_province_name: "{{ haproxy_state_or_province_name }}"
-    locality_name: "{{ haproxy_locality_name }}"
-    organization_name: "{{ haproxy_organization_name }}"
-    organizational_unit_name: "{{ haproxy_organizational_unit_name }}"
-    email_address: "{{ haproxy_email_address }}"
-    common_name: "{{ haproxy_common_name }}"
+    - name: Generate an OpenSSL Certificate Signing Request
+      become: yes
+      openssl_csr:
+        path: "{{ haproxy_ssl_certificate_csr_file }}"
+        privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+        country_name: "{{ haproxy_country_name }}"
+        state_or_province_name: "{{ haproxy_state_or_province_name }}"
+        locality_name: "{{ haproxy_locality_name }}"
+        organization_name: "{{ haproxy_organization_name }}"
+        organizational_unit_name: "{{ haproxy_organizational_unit_name }}"
+        email_address: "{{ haproxy_email_address }}"
+        common_name: "{{ haproxy_common_name }}"
 
-- name: Generate a Self Signed OpenSSL certificate
-  become: yes
-  openssl_certificate:
-    path: "{{ haproxy_ssl_certificate_crt_file }}"
-    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
-    csr_path: "{{ haproxy_ssl_certificate_csr_file }}"
-    provider: 'selfsigned'
+    - name: Generate a Self Signed OpenSSL certificate
+      become: yes
+      openssl_certificate:
+        path: "{{ haproxy_ssl_certificate_crt_file }}"
+        privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+        csr_path: "{{ haproxy_ssl_certificate_csr_file }}"
+        provider: 'selfsigned'
 
-- name: Generate PKCS12 file
-  become: yes
-  openssl_pkcs12:
-    action: export
-    path: "{{ haproxy_ssl_certificate_pkcs12_file }}"
-    certificate_path: "{{ haproxy_ssl_certificate_crt_file }}"
-    privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
-    state: present
-    friendly_name: 'pkcs12_file'
-  notify: Reload HAProxy
+    - name: Generate PKCS12 file
+      become: yes
+      openssl_pkcs12:
+        action: export
+        path: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+        certificate_path: "{{ haproxy_ssl_certificate_crt_file }}"
+        privatekey_path: "{{ haproxy_ssl_certificate_key_file }}"
+        state: present
+        friendly_name: 'pkcs12_file'
+      notify: Reload HAProxy
 
-- name: Parse PKCS12 file
-  become: yes
-  openssl_pkcs12:
-    action: parse
-    src: "{{ haproxy_ssl_certificate_pkcs12_file }}"
-    path: "{{ haproxy_ssl_certificate_chain_file }}"
-    state: present
-    mode: '0640'
-    owner: 'root'
-    group: "{{ haproxy_group }}"
-  notify: Reload HAProxy
+    - name: Parse PKCS12 file
+      become: yes
+      openssl_pkcs12:
+        action: parse
+        src: "{{ haproxy_ssl_certificate_pkcs12_file }}"
+        path: "{{ haproxy_ssl_certificate_chain_file }}"
+        state: present
+        mode: '0640'
+        owner: 'root'
+        group: "{{ haproxy_group }}"
+      notify: Reload HAProxy
 
 - name: Generate DH Parameter file
   become: yes

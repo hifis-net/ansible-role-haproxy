@@ -255,6 +255,14 @@ Give the path to the HAProxy SSL directory:
 haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
 ```
 
+###### HAProxy self-signed SSL certificate creation
+
+Wether to create a self-signed SSL certificate:
+
+```yaml
+haproxy_create_self_signed_cert: true
+```
+
 ###### HAProxy Private Key file path
 
 Give the path to the HAProxy Private Key file:
