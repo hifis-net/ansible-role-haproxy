@@ -35,6 +35,9 @@ Group your changes into these categories:
 - Resolve "HAProxy isn't restarted/reloaded on SSL config change"
   ([!16](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/16)
   by [Normo](https://gitlab.com/Normo)).
+- Resolve "Make self-signed SSL generation optional"
+  ([!17](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/17)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v0.1.0)
 

@@ -40,6 +40,8 @@ haproxy_log_level: 'info'
 haproxy_socket: '/run/haproxy/admin.sock'
 # HAProxy SSL directory
 haproxy_ssl_certificate_dir: "/etc/haproxy/ssl"
+# Generate a self-signed SSL certificate
+haproxy_create_self_signed_cert: true
 # Country name for SSL certificate
 haproxy_country_name: 'DE'
 # State name for SSL certificate
