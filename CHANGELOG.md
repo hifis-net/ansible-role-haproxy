@@ -38,6 +38,9 @@ Group your changes into these categories:
 - Resolve "Make self-signed SSL generation optional"
   ([!17](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/17)
   by [Normo](https://gitlab.com/Normo)).
+- Bump Ansible to 2.10.4
+  ([!19](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/19)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v0.1.0)
 
