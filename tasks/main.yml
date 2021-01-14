@@ -46,11 +46,23 @@
     validate_certs: yes
     mode: '0644'
 
-- name: Install "haproxy" package
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+
+- name: Check whether "haproxy" version contains wildcard character.
+  set_fact:
+    haproxy_version_with_wildcard: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.[*])$', '\\1') }}"
+
+- name: Install or upgrade "haproxy" package to version.
   become: yes
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
+  when: "haproxy_version_with_wildcard|length > 0 or
+         ansible_facts.packages['haproxy'] is not defined or
+         (ansible_facts.packages['haproxy'][0].version is defined and
+          ansible_facts.packages['haproxy'][0].version != haproxy_version)"
 
 - name: Create HAProxy Configuration Directory.
   become: yes
