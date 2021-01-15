@@ -46,23 +46,40 @@
     validate_certs: yes
     mode: '0644'
 
-- name: Gather the package facts
-  package_facts:
-    manager: auto
+- name: Check whether HAProxy binary is installed.
+  stat:
+    path: "{{ haproxy_executable_path }}"
+  register: haproxy_installed
 
-- name: Check whether "haproxy" version contains wildcard character.
+- name: Get HAProxy version.
+  command:
+    cmd: "{{ haproxy_executable_path }} -v"
+  register: haproxy_version_installed
+  when: haproxy_installed.stat.exists
+  changed_when: false
+  check_mode: no
+
+- name: Extract installed HAProxy version from HAProxy version output.
   set_fact:
-    haproxy_version_with_wildcard: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.[*])$', '\\1') }}"
+    installed_semantic_haproxy_version: "{{ haproxy_version_installed | regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') | default([], True) }}"
+  when: "haproxy_installed.stat is defined and haproxy_installed.stat.exists"
 
-- name: Install or upgrade "haproxy" package to version.
+- name: Set target semantic HAProxy version.
+  set_fact:
+    is_haproxy_version_a_wildcard: "{{ haproxy_version | regex_search('^(\\*)$', '\\1') | default([], True) | length > 0 }}"
+    is_haproxy_version_with_wildcard: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.\\*)$', '\\1') | default([], True) | length > 0 }}"
+    target_semantic_haproxy_version: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') | default([], True) }}"
+
+- name: Install or upgrade "haproxy" package.
   become: yes
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
-  when: "haproxy_version_with_wildcard|length > 0 or
-         ansible_facts.packages['haproxy'] is not defined or
-         (ansible_facts.packages['haproxy'][0].version is defined and
-          ansible_facts.packages['haproxy'][0].version != haproxy_version)"
+  when: "is_haproxy_version_with_wildcard or
+         is_haproxy_version_a_wildcard or
+         (haproxy_installed.stat is defined and not haproxy_installed.stat.exists) or
+         (installed_semantic_haproxy_version | length > 0 and target_semantic_haproxy_version | length > 0 and
+          installed_semantic_haproxy_version[0] is version(target_semantic_haproxy_version[0], operator='lt', strict=True))"
 
 - name: Create HAProxy Configuration Directory.
   become: yes

@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Path to the executable of HAProxy
+haproxy_executable_path: '/usr/sbin/haproxy'
 # HAProxy PPA version
 haproxy_ppa_version: 'ppa:vbernat/haproxy-2.2'
 # HAProxy version

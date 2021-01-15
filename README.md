@@ -95,6 +95,14 @@ haproxy_stats_admin_user_password: 'changeme'
 
 #### All other Default Variables
 
+###### Path to the executable of HAProxy
+
+Path variable pointing to the location of the HAProxy executable:
+
+```yaml
+haproxy_executable_path: '/usr/sbin/haproxy'
+```
+
 ###### HAProxy PPA version
 
 Variable to pin the PPA version to a certain value:
