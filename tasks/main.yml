@@ -56,7 +56,7 @@
   register: haproxy_installed
 
 - name: Check currently installed HAProxy version
-  when: "not version_contains_wildcard and haproxy_installed.stat.exists"
+  when: not version_contains_wildcard and haproxy_installed.stat.exists
   block:
     - name: Get HAProxy version.
       command:
@@ -81,9 +81,9 @@
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
-  when: "version_contains_wildcard or
-         not haproxy_installed.stat.exists or
-         installed_semantic_haproxy_version is version(target_semantic_haproxy_version, operator='lt', strict=True)"
+  when: version_contains_wildcard or
+        not haproxy_installed.stat.exists or
+        installed_semantic_haproxy_version is version(target_semantic_haproxy_version, operator='lt', strict=True)
 
 - name: Create HAProxy Configuration Directory.
   become: yes
