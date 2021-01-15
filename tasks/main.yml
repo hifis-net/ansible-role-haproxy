@@ -46,40 +46,44 @@
     validate_certs: yes
     mode: '0644'
 
+- name: Check whether wildcard character is contained in version string.
+  set_fact:
+    version_contains_wildcard: "{{ '*' in haproxy_version }}"
+
 - name: Check whether HAProxy binary is installed.
   stat:
     path: "{{ haproxy_executable_path }}"
   register: haproxy_installed
 
-- name: Get HAProxy version.
-  command:
-    cmd: "{{ haproxy_executable_path }} -v"
-  register: haproxy_version_installed
-  when: haproxy_installed.stat.exists
-  changed_when: false
-  check_mode: no
+- name: Check currently installed HAProxy version
+  when: "not version_contains_wildcard and haproxy_installed.stat.exists"
+  block:
+    - name: Get HAProxy version.
+      command:
+        cmd: "{{ haproxy_executable_path }} -v"
+      register: haproxy_version_installed
+      changed_when: false
+      check_mode: no
 
-- name: Extract installed HAProxy version from HAProxy version output.
-  set_fact:
-    installed_semantic_haproxy_version: "{{ haproxy_version_installed | regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') | default([], True) }}"
-  when: "haproxy_installed.stat is defined and haproxy_installed.stat.exists"
-
-- name: Set target semantic HAProxy version.
-  set_fact:
-    is_haproxy_version_a_wildcard: "{{ haproxy_version | regex_search('^(\\*)$', '\\1') | default([], True) | length > 0 }}"
-    is_haproxy_version_with_wildcard: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.\\*)$', '\\1') | default([], True) | length > 0 }}"
-    target_semantic_haproxy_version: "{{ haproxy_version | regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') | default([], True) }}"
+    - name: Extract installed and target HAProxy versions.
+      set_fact:
+        installed_semantic_haproxy_version: "{{ haproxy_version_installed |
+                                                regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
+                                                default([None], True) |
+                                                first }}"
+        target_semantic_haproxy_version: "{{ haproxy_version |
+                                             regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') |
+                                             default([None], True) |
+                                             first }}"
 
 - name: Install or upgrade "haproxy" package.
   become: yes
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
-  when: "is_haproxy_version_with_wildcard or
-         is_haproxy_version_a_wildcard or
-         (haproxy_installed.stat is defined and not haproxy_installed.stat.exists) or
-         (installed_semantic_haproxy_version | length > 0 and target_semantic_haproxy_version | length > 0 and
-          installed_semantic_haproxy_version[0] is version(target_semantic_haproxy_version[0], operator='lt', strict=True))"
+  when: "version_contains_wildcard or
+         not haproxy_installed.stat.exists or
+         installed_semantic_haproxy_version is version(target_semantic_haproxy_version, operator='lt', strict=True)"
 
 - name: Create HAProxy Configuration Directory.
   become: yes
