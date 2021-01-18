@@ -67,14 +67,14 @@
 
     - name: Extract installed and target HAProxy versions.
       set_fact:
-        installed_semantic_haproxy_version: "{{ haproxy_version_installed |
-                                                regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
-                                                default([None], True) |
-                                                first }}"
-        target_semantic_haproxy_version: "{{ haproxy_version |
-                                             regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') |
-                                             default([None], True) |
-                                             first }}"
+        installed_version: "{{ haproxy_version_installed |
+                               regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
+                               default([None], True) |
+                               first }}"
+        target_version: "{{ haproxy_version |
+                            regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') |
+                            default([None], True) |
+                            first }}"
 
 - name: Install or upgrade "haproxy" package.
   become: yes
@@ -83,7 +83,7 @@
     update_cache: yes
   when: version_contains_wildcard or
         not haproxy_installed.stat.exists or
-        installed_semantic_haproxy_version is version(target_semantic_haproxy_version, operator='lt', strict=True)
+        installed_version is version(target_version, operator='lt', strict=True)
 
 - name: Create HAProxy Configuration Directory.
   become: yes
