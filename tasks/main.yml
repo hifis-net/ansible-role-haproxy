@@ -46,11 +46,44 @@
     validate_certs: yes
     mode: '0644'
 
-- name: Install "haproxy" package
+- name: Check whether wildcard character is contained in version string.
+  set_fact:
+    version_contains_wildcard: "{{ '*' in haproxy_version }}"
+
+- name: Check whether HAProxy binary is installed.
+  stat:
+    path: "{{ haproxy_executable_path }}"
+  register: haproxy_installed
+
+- name: Check currently installed HAProxy version
+  when: not version_contains_wildcard and haproxy_installed.stat.exists
+  block:
+    - name: Get HAProxy version.
+      command:
+        cmd: "{{ haproxy_executable_path }} -v"
+      register: haproxy_version_installed
+      changed_when: false
+      check_mode: no
+
+    - name: Extract installed and target HAProxy versions.
+      set_fact:
+        installed_version: "{{ haproxy_version_installed |
+                               regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
+                               default([None], True) |
+                               first }}"
+        target_version: "{{ haproxy_version |
+                            regex_search('^(\\d+\\.\\d+\\.\\d+)', '\\1') |
+                            default([None], True) |
+                            first }}"
+
+- name: Install or upgrade "haproxy" package.
   become: yes
   package:
     name: "{{ haproxy_name }}={{ haproxy_version }}"
     update_cache: yes
+  when: version_contains_wildcard or
+        not haproxy_installed.stat.exists or
+        installed_version is version(target_version, operator='lt', strict=True)
 
 - name: Create HAProxy Configuration Directory.
   become: yes
