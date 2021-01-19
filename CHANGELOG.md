@@ -20,6 +20,11 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.2.0...master)
 
+### Added
+- Check HAProxy configuration via a role task
+  ([!22](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/22)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+
 ### Fixed
 - Check package version of HAProxy to decide on install / upgrade step
   ([!21](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/21)
