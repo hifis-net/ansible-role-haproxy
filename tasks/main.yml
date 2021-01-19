@@ -179,7 +179,7 @@
 
 - name: Check HAProxy configuration quietly.
   command:
-    cmd: "/usr/sbin/haproxy -c -q -f {{ haproxy_conf_file_path }}"
+    cmd: "{{ haproxy_executable_path }} -c -q -f {{ haproxy_conf_file_path }}"
   register: check_haproxy_config
   changed_when: check_haproxy_config.rc != 0
   failed_when: check_haproxy_config.rc != 0
