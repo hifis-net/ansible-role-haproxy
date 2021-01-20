@@ -23,7 +23,6 @@ galaxy_info:
   galaxy_tags:
     - haproxy
     - loadbalancer
-    - http
     - networking
     - web
 
