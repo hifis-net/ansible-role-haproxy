@@ -5,8 +5,7 @@
 
 ---
 galaxy_info:
-  role_name: haproxy_role
-
+  role_name: haproxy
   author: HIFIS Software Team
   description: Research Software Engineers
   company: Helmholtz Association
