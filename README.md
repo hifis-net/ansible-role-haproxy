@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # HAProxy Role
 
-Role sets up a HAProxy instance to be used as a load balancer in a
-High Availability and Scalability context.
+A role to set up HAProxy to be used as a load balancer in a high availability
+and scalability context.
 
 Currently [supported platforms](meta/main.yml) are:
 - Ubuntu 20.04 LTS
@@ -330,10 +330,26 @@ haproxy_ssl_dhparam_size: 4096
 
 None.
 
+Note: This role is intended for use with, but not limited to, the
+[hifis.keepalived](https://gitlab.com/hifis/ansible/keepalived-role/) role.
+
+## Example playbook
+
+```yaml
+- hosts: loadbalancers
+  roles:
+    - role: hifis.haproxy
+      vars:
+        frontend_ip: '192.168.33.100'
+        backends:
+          - backend_name: 'backend_server_1'
+            backend_id: '192.168.33.10'
+```
+
 ## License
 
 [Apache-2.0](LICENSES/Apache-2.0.txt)
 
 ## Author Information
 
-HIFIS Software Team (please visit [HIFIS Software Webpage](https://software.hifis.net))
+[HIFIS Software Team](https://software.hifis.net)
