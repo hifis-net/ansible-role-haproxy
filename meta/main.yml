@@ -7,7 +7,7 @@
 galaxy_info:
   role_name: haproxy
   author: HIFIS Software Team
-  description: Research Software Engineers
+  description: Install and configure HAProxy to be used for load-balancing in a high availability and scalability context.
   company: Helmholtz Association
 
   issue_tracker_url: https://gitlab.com/hifis/ansible/haproxy-role/-/issues
