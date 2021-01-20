@@ -24,6 +24,11 @@ Group your changes into these categories:
 - Check HAProxy configuration via a role task
   ([!22](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/22)
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+  
+### Changed
+- Update role meta information
+  ([!24](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/24)
+  by [Normo](https://gitlab.com/Normo)).
 
 ### Fixed
 - Check package version of HAProxy to decide on install / upgrade step
