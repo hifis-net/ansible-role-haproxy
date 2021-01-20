@@ -5,27 +5,23 @@ SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
 SPDX-License-Identifier: Apache-2.0
 -->
 
-HAProxy Role
-============
+# HAProxy Role
 
 Role sets up a HAProxy instance to be used as a load balancer in a
 High Availability and Scalability context.
 
 Currently [supported platforms](meta/main.yml) are:
-
 - Ubuntu 20.04 LTS
 
-Requirements
-------------
+## Requirements
 
 None.
 
-Role Variables
---------------
+## Role Variables
 
-#### Compulsory variables which are not set per default
+### Compulsory variables which are not set by default
 
-###### Backend GitLab IP addresses
+#### Backend GitLab IP addresses
 
 Specify a list of backends with name and IP address:
  
@@ -35,7 +31,7 @@ backends:
     backend_id: '192.168.33.10'
 ```
 
-###### Frontend floating IP address
+#### Frontend floating IP address
 
 Specify the floating IP address of the frontend:
 
@@ -43,9 +39,9 @@ Specify the floating IP address of the frontend:
 frontend_ip: '192.168.33.100'
 ```
 
-#### Compulsory variables which are set per default but need to be adapted
+### Compulsory variables which are set by default but need to be adapted
 
-###### Number of processors used by HAProxy
+#### Number of processors used by HAProxy
 
 Sets number of processors used by HAProxy:
 
@@ -53,7 +49,7 @@ Sets number of processors used by HAProxy:
 haproxy_nbproc: '1'
 ```
 
-###### Number of threads used by HAProxy
+#### Number of threads used by HAProxy
 
 Sets number of threads used by HAProxy:
 
@@ -61,7 +57,7 @@ Sets number of threads used by HAProxy:
 haproxy_nbthread: '2'
 ```
 
-###### HAProxy CPU Map for Multithreading
+#### HAProxy CPU Map for Multithreading
 
 Mapping threads to CPU cores:
 
@@ -69,7 +65,7 @@ Mapping threads to CPU cores:
 haproxy_cpumap: 'auto:1/1-2 0-1'
 ```
 
-###### Enable/disable stats
+#### Enable/disable stats
 
 Variable to enable or disable the stats:
 
@@ -77,7 +73,7 @@ Variable to enable or disable the stats:
 haproxy_stats_enable: 'enable'
 ```
 
-###### Stats admin user name
+#### Stats admin user name
 
 Variable to hold the stats admin user name:
 
@@ -85,7 +81,7 @@ Variable to hold the stats admin user name:
 haproxy_stats_admin_user: 'admin'
 ```
 
-###### Stats admin user password
+#### Stats admin user password
 
 Variable to hold the stats admin user password:
 
@@ -93,9 +89,9 @@ Variable to hold the stats admin user password:
 haproxy_stats_admin_user_password: 'changeme'
 ```
 
-#### All other Default Variables
+### All other default variables
 
-###### Path to the executable of HAProxy
+#### Path to the executable of HAProxy
 
 Path variable pointing to the location of the HAProxy executable:
 
@@ -103,7 +99,7 @@ Path variable pointing to the location of the HAProxy executable:
 haproxy_executable_path: '/usr/sbin/haproxy'
 ```
 
-###### HAProxy PPA version
+#### HAProxy PPA version
 
 Variable to pin the PPA version to a certain value:
 
@@ -111,7 +107,7 @@ Variable to pin the PPA version to a certain value:
 haproxy_ppa_version: 'ppa:vbernat/haproxy-2.1'
 ```
 
-###### HAProxy version
+#### HAProxy version
 
 Variable to pin the HAProxy version to a certain value:
 
@@ -119,7 +115,7 @@ Variable to pin the HAProxy version to a certain value:
 haproxy_version: '2.1.*'
 ```
 
-###### HAProxy user
+#### HAProxy user
 
 Variable to specify the HAProxy system user:
 
@@ -127,7 +123,7 @@ Variable to specify the HAProxy system user:
 haproxy_user: 'haproxy'
 ```
 
-###### HAProxy group
+#### HAProxy group
 
 Variable to specify the HAProxy system group:
 
@@ -135,7 +131,7 @@ Variable to specify the HAProxy system group:
 haproxy_group: 'haproxy'
 ```
 
-###### HAProxy HAProxy dependencies to be installed
+#### HAProxy dependencies to be installed
 
 List of HAProxy dependencies to be installed:
 
@@ -144,7 +140,7 @@ haproxy_dependencies:
   - 'software-properties-common'
 ```
 
-###### HAProxy binary name
+#### HAProxy binary name
 
 Name of the HAProxy binary:
 
@@ -152,7 +148,7 @@ Name of the HAProxy binary:
 haproxy_name: 'haproxy'
 ```
 
-###### HAProxy configuration template
+#### HAProxy configuration template
 
 Provide the path to the HAProxy configuration template:
 
@@ -160,8 +156,7 @@ Provide the path to the HAProxy configuration template:
 haproxy_config_template: 'haproxy.cfg.j2'
 ```
 
-
-###### HAProxy configuration directory path
+#### HAProxy configuration directory path
 
 Give the path to the HAProxy configuration directory:
 
@@ -169,7 +164,7 @@ Give the path to the HAProxy configuration directory:
 haproxy_conf_dir: '/etc/haproxy/'
 ```
 
-###### HAProxy configuration file path
+#### HAProxy configuration file path
 
 Give the path to the HAProxy configuration file:
 
@@ -177,7 +172,7 @@ Give the path to the HAProxy configuration file:
 haproxy_conf_file_path: "/etc/haproxy/haproxy.cfg"
 ```
 
-###### HAProxy logging socket path
+#### HAProxy logging socket path
 
 Give the path to the HAProxy logging socket:
 
@@ -185,7 +180,7 @@ Give the path to the HAProxy logging socket:
 haproxy_log_socket: '/dev/log'
 ```
 
-###### HAProxy log level
+#### HAProxy log level
 
 Specify the log level of HAProxy.
 Possible values are:
@@ -195,7 +190,7 @@ Possible values are:
 haproxy_log_level: 'info'
 ```
 
-###### HAProxy socket file path
+#### HAProxy socket file path
 
 Give the path to the HAProxy socket file:
 
@@ -203,71 +198,7 @@ Give the path to the HAProxy socket file:
 haproxy_socket: '/run/haproxy/admin.sock'
 ```
 
-###### Country Name for SSL certificate
-
-Set country to be used for the SSL certificate:
-
-```yaml
-haproxy_country_name: 'DE'
-```
-
-###### State name for SSL certificate
-
-Set state to be used for the SSL certificate:
-
-```yaml
-haproxy_state_or_province_name: 'Saxony'
-```
-
-###### Locality Name for SSL certificate
-
-Set locality to be used for the SSL certificate:
-
-```yaml
-haproxy_locality_name: 'Dresden'
-```
-
-###### Organization name for SSL certificate
-
-Set organization to be used for the SSL certificate:
-
-```yaml
-haproxy_organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
-```
-
-###### Organization Unit Name for SSL certificate
-
-Set organization unit to be used for the SSL certificate:
-
-```yaml
-haproxy_organizational_unit_name: 'FWCC / Computational Science'
-```
-
-###### Email address for SSL certificate
-
-Set email address to be used for the SSL certificate:
-
-```yaml
-haproxy_email_address: 'hifis-help@hzdr.de'
-```
-
-###### Common Name for SSL certificate
-
-Set common name to be used for the SSL certificate:
-
-```yaml
-haproxy_common_name: 'Helmholtz Association'
-```
-
-###### HAProxy SSL directory path
-
-Give the path to the HAProxy SSL directory:
-
-```yaml
-haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
-```
-
-###### HAProxy self-signed SSL certificate creation
+#### HAProxy self-signed SSL certificate creation
 
 Wether to create a self-signed SSL certificate:
 
@@ -275,7 +206,71 @@ Wether to create a self-signed SSL certificate:
 haproxy_create_self_signed_cert: true
 ```
 
-###### HAProxy Private Key file path
+#### Country Name for SSL certificate
+
+Set country to be used for the SSL certificate:
+
+```yaml
+haproxy_country_name: 'DE'
+```
+
+#### State name for SSL certificate
+
+Set state to be used for the SSL certificate:
+
+```yaml
+haproxy_state_or_province_name: 'Saxony'
+```
+
+#### Locality Name for SSL certificate
+
+Set locality to be used for the SSL certificate:
+
+```yaml
+haproxy_locality_name: 'Dresden'
+```
+
+#### Organization name for SSL certificate
+
+Set organization to be used for the SSL certificate:
+
+```yaml
+haproxy_organization_name: 'Helmholtz-Zentrum Dresden-Rossendorf (HZDR)'
+```
+
+#### Organization Unit Name for SSL certificate
+
+Set organization unit to be used for the SSL certificate:
+
+```yaml
+haproxy_organizational_unit_name: 'FWCC / Computational Science'
+```
+
+#### Email address for SSL certificate
+
+Set email address to be used for the SSL certificate:
+
+```yaml
+haproxy_email_address: 'hifis-help@hzdr.de'
+```
+
+#### Common Name for SSL certificate
+
+Set common name to be used for the SSL certificate:
+
+```yaml
+haproxy_common_name: 'Helmholtz Association'
+```
+
+#### HAProxy SSL directory path
+
+Give the path to the HAProxy SSL directory:
+
+```yaml
+haproxy_ssl_certificate_dir: '/etc/haproxy/ssl'
+```
+
+#### HAProxy Private Key file path
 
 Give the path to the HAProxy Private Key file:
 
@@ -283,7 +278,7 @@ Give the path to the HAProxy Private Key file:
 haproxy_ssl_certificate_key_file: "/etc/haproxy/ssl/haproxy.key"
 ```
 
-###### HAProxy Certificate Signing Request file path
+#### HAProxy Certificate Signing Request file path
 
 Give the path to the HAProxy Certificate Signing Request file:
 
@@ -291,7 +286,7 @@ Give the path to the HAProxy Certificate Signing Request file:
 haproxy_ssl_certificate_csr_file: '/etc/haproxy/ssl/haproxy.csr'
 ```
 
-###### HAProxy Certificate file path
+#### HAProxy Certificate file path
 
 Give the path to the HAProxy Certificate file:
 
@@ -299,7 +294,7 @@ Give the path to the HAProxy Certificate file:
 haproxy_ssl_certificate_crt_file: "/etc/haproxy/ssl/haproxy.crt"
 ```
 
-###### HAProxy PKCS12 file path
+#### HAProxy PKCS12 file path
 
 Give the path to the HAProxy PKCS12 file:
 
@@ -307,7 +302,7 @@ Give the path to the HAProxy PKCS12 file:
 haproxy_ssl_certificate_pkcs12_file: "/etc/haproxy/ssl/haproxy.p12"
 ```
 
-###### HAProxy Certificate Chain file path
+#### HAProxy Certificate Chain file path
 
 Give the path to the HAProxy Certificate Chain file:
 
@@ -315,7 +310,7 @@ Give the path to the HAProxy Certificate Chain file:
 haproxy_ssl_certificate_chain_file: "/etc/haproxy/ssl/haproxy.pem"
 ```
 
-###### HAProxy DH Parameter file path
+#### HAProxy DH Parameter file path
 
 Give the path to the DH Parameter file:
 
@@ -323,7 +318,7 @@ Give the path to the DH Parameter file:
 haproxy_ssl_dhparam_file: "/etc/haproxy/ssl/dhparam.pem"
 ```
 
-###### HAProxy DH Parameter size
+#### HAProxy DH Parameter size
 
 Size (in bits) of the generated DH-params:
 
@@ -331,17 +326,14 @@ Size (in bits) of the generated DH-params:
 haproxy_ssl_dhparam_size: 4096
 ```
 
-Dependencies
-------------
+## Dependencies
 
 None.
 
-License
--------
+## License
 
 [Apache-2.0](LICENSES/Apache-2.0.txt)
 
-Author Information
-------------------
+## Author Information
 
 HIFIS Software Team (please visit [HIFIS Software Webpage](https://software.hifis.net))
