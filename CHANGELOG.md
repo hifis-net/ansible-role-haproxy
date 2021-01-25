@@ -18,7 +18,7 @@ Group your changes into these categories:
 
 ## Unreleased
 
-[List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v1.0.0...master)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.0...master)
 
 ## [1.0.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.0) - 2021-01-25
 
