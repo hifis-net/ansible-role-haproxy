@@ -18,7 +18,11 @@ Group your changes into these categories:
 
 ## Unreleased
 
-[List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.2.0...master)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.0...main)
+
+## [1.0.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.0) - 2021-01-25
+
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v0.2.0...v1.0.0)
 
 ### Added
 - Check HAProxy configuration via a role task
@@ -40,7 +44,7 @@ Group your changes into these categories:
 
 ## [0.2.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v0.2.0) - 2020-12-03
 
-[List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.1.0...v0.2.0)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v0.1.0...v0.2.0)
 
 ### Added
 - Configure DH param size via variable
