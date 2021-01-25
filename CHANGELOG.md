@@ -22,7 +22,7 @@ Group your changes into these categories:
 
 ## [1.0.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.0) - 2021-01-25
 
-[List of commits](https://gitlab.com/hifis/ansible/gitlab-role/-/compare/v0.2.0...v1.0.0)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v0.2.0...v1.0.0)
 
 ### Added
 - Check HAProxy configuration via a role task
