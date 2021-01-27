@@ -20,6 +20,11 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.0...main)
 
+### Changed
+- Check HAProxy configuration file via an Ansible handler
+  ([!27](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/27)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+
 ## [1.0.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.0) - 2021-01-25
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v0.2.0...v1.0.0)
