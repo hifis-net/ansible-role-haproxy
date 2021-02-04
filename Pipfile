@@ -11,7 +11,7 @@ verify_ssl = true
 [dev-packages]
 yamllint = "~=1.25.0"
 ansible-lint = "~=4.3.7"
-molecule = {extras = ["docker"], version = "~=3.2.2"}
+molecule = {extras = ["docker"], version = "~=3.2.3"}
 reuse = "~=0.12.1"
 
 [packages]
