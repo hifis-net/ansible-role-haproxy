@@ -28,8 +28,25 @@ provisioner:
           haproxy_ssl_dhparam_size: 512
   playbooks:
     prepare: prepare.yml
+    check: converge.yml
     converge: converge.yml
 verifier:
   name: ansible
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - check
+    - side_effect
+    - verify
+    - destroy
 
 ...
