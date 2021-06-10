@@ -34,6 +34,14 @@ Group your changes into these categories:
 * Add galaxy namespace hifis to the role metadata
   ([!37](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/37)
   by [Normo](https://gitlab.com/Normo)).
+* Prefix unprefixed variables with haproxy_
+  ([!36](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/36)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
+### Deprecated
+* Deprecate the variables `frontend_ip` and `backends` which are replaced
+  by `haproxy_frontend_ip` and `haproxy_backends`.
+  Support for the unprefixed variables will be removed in version 2.0.
 
 ## [1.0.1](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.1) - 2021-01-29
 
