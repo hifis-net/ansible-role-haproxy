@@ -27,6 +27,9 @@ Group your changes into these categories:
 * Use FQDN for Ansible modules
   ([!34](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/34)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+* Add galaxy namespace hifis to the role metadata
+  ([!37](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/37)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [1.0.1](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.0.1) - 2021-01-29
 
