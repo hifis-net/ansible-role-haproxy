@@ -17,13 +17,13 @@
   ansible.builtin.service:
     name: "{{ haproxy_name }}"
     state: restarted
-  ignore_errors: "{{ ansible_check_mode }}"
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"
 
 - name: Reload HAProxy
   become: yes
   ansible.builtin.service:
     name: "{{ haproxy_name }}"
     state: reloaded
-  ignore_errors: "{{ ansible_check_mode }}"
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"
 
 ...
