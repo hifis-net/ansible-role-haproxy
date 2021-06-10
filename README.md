@@ -26,18 +26,24 @@ None.
 Specify a list of backends with name and IP address:
  
 ```yaml
-backends:
+haproxy_backends:
   - backend_name: 'backend_server_1'
     backend_id: '192.168.33.10'
 ```
+
+:warning: The variable name `backends` is deprecated and will be removed in
+version 2.0.
 
 #### Frontend floating IP address
 
 Specify the floating IP address of the frontend:
 
 ```yaml
-frontend_ip: '192.168.33.100'
+haproxy_frontend_ip: '192.168.33.100'
 ```
+
+:warning: The variable name `frontend_ip` is deprecated and will be removed in
+version 2.0.
 
 ### Compulsory variables which are set by default but need to be adapted
 
@@ -340,8 +346,8 @@ Note: This role is intended for use with, but not limited to, the
   roles:
     - role: hifis.haproxy
       vars:
-        frontend_ip: '192.168.33.100'
-        backends:
+        haproxy_frontend_ip: '192.168.33.100'
+        haproxy_backends:
           - backend_name: 'backend_server_1'
             backend_id: '192.168.33.10'
 ```

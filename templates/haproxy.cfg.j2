@@ -39,12 +39,12 @@ defaults
 
 frontend haproxy_http
     mode http
-    bind {{ frontend_ip }}:80
+    bind {{ haproxy_frontend_ip }}:80
     redirect scheme https if !{ ssl_fc }
 
 frontend haproxy_https
     # a frontend that accepts requests from clients
-    bind {{ frontend_ip }}:443 ssl crt {{ haproxy_ssl_certificate_chain_file }} alpn h2,http1.1
+    bind {{ haproxy_frontend_ip }}:443 ssl crt {{ haproxy_ssl_certificate_chain_file }} alpn h2,http1.1
     default_backend gitlab
 
 frontend haproxy_stats
@@ -61,6 +61,6 @@ backend gitlab
     option httpchk HEAD /
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     default-server check maxconn 20
-    {% for backend in backends %}
+    {% for backend in haproxy_backends %}
     server {{ backend.backend_name }} {{ backend.backend_ip }}:80 check
     {% endfor %}
