@@ -84,6 +84,7 @@
   when: version_contains_wildcard or
         not haproxy_installed.stat.exists or
         installed_version is version(target_version, operator='lt', strict=True)
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Create HAProxy Configuration Directory.
   become: yes
@@ -106,8 +107,13 @@
     - Check HAProxy configuration file
     - Reload HAProxy
 
+- name: Check if Haproxy configuration directory exists
+  ansible.builtin.stat:
+    path: "{{ haproxy_conf_dir }}"
+  register: st
+
 - name: Generate self-signed TLS certificate
-  when: haproxy_create_self_signed_cert | bool
+  when: haproxy_create_self_signed_cert | bool and st.stat.isdir is defined
   block:
     - name: Create HAProxy SSL Directory.
       become: yes
@@ -174,6 +180,7 @@
         - Reload HAProxy
 
 - name: Generate DH Parameter file
+  when: st.stat.isdir is defined
   become: yes
   community.crypto.openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
