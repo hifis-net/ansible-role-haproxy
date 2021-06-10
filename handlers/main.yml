@@ -6,7 +6,7 @@
 ---
 
 - name: Check HAProxy configuration file
-  command:
+  ansible.builtin.command:
     cmd: "{{ haproxy_executable_path }} -c -q -f {{ haproxy_conf_file_path }}"
   register: check_haproxy_config
   changed_when: check_haproxy_config.rc != 0
@@ -14,13 +14,13 @@
 
 - name: Restart HAProxy
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_name }}"
     state: restarted
 
 - name: Reload HAProxy
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_name }}"
     state: reloaded
 

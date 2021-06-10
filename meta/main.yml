@@ -26,6 +26,9 @@ galaxy_info:
     - networking
     - web
 
+collections:
+  - community.crypto
+
 dependencies: []
 
 ...
