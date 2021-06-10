@@ -9,7 +9,7 @@
   hosts: all
   tasks:
     - name: "Include haproxy_role"
-      include_role:
+      ansible.builtin.include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
   vars:
     frontend_ip: "192.168.33.100"
