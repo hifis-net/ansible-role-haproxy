@@ -21,6 +21,11 @@ lint: |
   ansible-lint -v --force-color --exclude .pipenv/ .
 provisioner:
   name: ansible
+  inventory:
+    hosts:
+      all:
+        vars:
+          haproxy_ssl_dhparam_size: 512
   playbooks:
     prepare: prepare.yml
     converge: converge.yml
