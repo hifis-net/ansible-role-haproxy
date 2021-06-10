@@ -111,13 +111,8 @@
     - Check HAProxy configuration file
     - Reload HAProxy
 
-- name: Check if Haproxy configuration directory exists
-  ansible.builtin.stat:
-    path: "{{ haproxy_conf_dir }}"
-  register: st
-
 - name: Generate self-signed TLS certificate
-  when: haproxy_create_self_signed_cert | bool and st.stat.isdir is defined
+  when: haproxy_create_self_signed_cert | bool and not ignore_errors_in_check_mode
   block:
     - name: Create HAProxy SSL Directory.
       become: yes
@@ -184,7 +179,7 @@
         - Reload HAProxy
 
 - name: Generate DH Parameter file
-  when: st.stat.isdir is defined
+  when: not ignore_errors_in_check_mode
   become: yes
   community.crypto.openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
