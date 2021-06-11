@@ -23,6 +23,10 @@ Group your changes into these categories:
 ### Changed
 * Reduce DHParam size in molecule tests
   ([!32](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/32)
+
+### Fixed
+* Fix initial dry run and improve molecule test sequence
+  ([!33](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/33)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
 * Use FQDN for Ansible modules
   ([!34](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/34)
