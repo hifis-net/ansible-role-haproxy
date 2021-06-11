@@ -9,7 +9,7 @@
     that:
       # Support both variable names until version 2.0
       - haproxy_backends is defined or backends is defined
-      - haproxy_frontend_ip  is defined or frontend_ip is defined
+      - haproxy_frontend_ip is defined or frontend_ip is defined
     fail_msg: "Some mandatory variables are not set."
     success_msg: "All mandatory variables are set."
   when: haproxy_config_template == "haproxy.cfg.j2"
@@ -20,16 +20,16 @@
     haproxy_backends: "{{ backends }}"
 - name: "Show Deprecation warning"
   ansible.builtin.debug:
-    msg: The variable backends is deprecated and will be removed in version 2.0
+    msg: "The variable 'backends' is deprecated and will be removed in version 2.0"
   when: backends is defined
 
 - name: Set haproxy_frontend_ip variable if not set.
   when: haproxy_frontend_ip is not defined
   ansible.builtin.set_fact:
-    haproxy_backends: "{{ frontend_ip }}"
+    haproxy_frontend_ip: "{{ frontend_ip }}"
 - name: "Show Deprecation warning"
   ansible.builtin.debug:
-    msg: The variable frontend_ip is deprecated and will be removed in version 2.0
+    msg: "The variable 'frontend_ip' is deprecated and will be removed in version 2.0"
   when: frontend_ip is defined
 
 - name: Enable ip_forward.
