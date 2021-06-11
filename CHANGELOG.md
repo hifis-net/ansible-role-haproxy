@@ -20,6 +20,11 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.0...main)
 
+### Added
+* Automate import to Ansible Galaxy via GitHub Actions
+  ([!39](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/39)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
 ### Fixed
 * Fix initial role execution if SSL certificate generation disabled
   ([!40](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/40)
