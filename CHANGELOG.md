@@ -16,9 +16,9 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.1.0) - 2021-06-11
 
-[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.1...main)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.1...v1.1.0)
 
 ### Changed
 * Reduce DHParam size in molecule tests
