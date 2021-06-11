@@ -107,7 +107,7 @@
   when: version_contains_wildcard or
         not haproxy_installed.stat.exists or
         installed_version is version(target_version, operator='lt', strict=True)
-  ignore_errors: "{{ ignore_errors_in_check_mode }}"
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"  # noqa ignore-errors
 
 - name: Create HAProxy Configuration Directory.
   become: yes
@@ -199,7 +199,7 @@
         - Reload HAProxy
 
 - name: Generate DH Parameter file
-  ignore_errors: "{{ ignore_errors_in_check_mode }}"
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"  # noqa ignore-errors
   become: yes
   community.crypto.openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
