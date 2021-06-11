@@ -16,13 +16,14 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.1.0) - 2021-06-11
 
-[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.1...main)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.1...v1.1.0)
 
 ### Changed
 * Reduce DHParam size in molecule tests
   ([!32](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/32)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
 * Update all Python dependencies to the most recent version
   ([!35](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/35)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
