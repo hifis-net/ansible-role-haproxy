@@ -23,6 +23,7 @@ Group your changes into these categories:
 ### Changed
 * Reduce DHParam size in molecule tests
   ([!32](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/32)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
 * Update all Python dependencies to the most recent version
   ([!35](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/35)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
