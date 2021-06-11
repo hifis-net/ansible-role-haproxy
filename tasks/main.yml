@@ -112,7 +112,8 @@
     - Reload HAProxy
 
 - name: Generate self-signed TLS certificate
-  when: haproxy_create_self_signed_cert | bool and not ignore_errors_in_check_mode
+  when: haproxy_create_self_signed_cert | bool
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"
   block:
     - name: Create HAProxy SSL Directory.
       become: yes
@@ -179,7 +180,7 @@
         - Reload HAProxy
 
 - name: Generate DH Parameter file
-  when: not ignore_errors_in_check_mode
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"
   become: yes
   community.crypto.openssl_dhparam:
     path: "{{ haproxy_ssl_dhparam_file }}"
