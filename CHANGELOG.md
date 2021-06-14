@@ -16,6 +16,15 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.0...main)
+
+### Fixed
+* Fix initial role execution if SSL certificate generation disabled
+  ([!40](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/40)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
 ## [1.1.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.1.0) - 2021-06-11
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.0.1...v1.1.0)
