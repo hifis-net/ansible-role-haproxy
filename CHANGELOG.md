@@ -16,9 +16,9 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.1.1](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.1.1) - 2021-06-14
 
-[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.0...main)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.0...v1.1.1)
 
 ### Added
 * Automate import to Ansible Galaxy via GitHub Actions
