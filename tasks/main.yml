@@ -130,19 +130,19 @@
     - Check HAProxy configuration file
     - Reload HAProxy
 
+- name: Create HAProxy SSL Directory.
+  become: yes
+  ansible.builtin.file:
+    path: "{{ haproxy_ssl_certificate_dir }}"
+    state: directory
+    owner: "{{ haproxy_user }}"
+    group: "{{ haproxy_group }}"
+    mode: '0755'
+
 - name: Generate self-signed TLS certificate
   when: haproxy_create_self_signed_cert | bool
   ignore_errors: "{{ ignore_errors_in_check_mode }}"
   block:
-    - name: Create HAProxy SSL Directory.
-      become: yes
-      ansible.builtin.file:
-        path: "{{ haproxy_ssl_certificate_dir }}"
-        state: directory
-        owner: "{{ haproxy_user }}"
-        group: "{{ haproxy_group }}"
-        mode: '0755'
-
     - name: Generate an OpenSSL Private Key (4096 bits)
       become: yes
       community.crypto.openssl_privatekey:
