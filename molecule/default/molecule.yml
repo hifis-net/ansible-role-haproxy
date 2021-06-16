@@ -9,7 +9,14 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance_haproxy
+  - name: instance_haproxy_1
+    image: jrei/systemd-ubuntu:20.04
+    pre_build_image: true
+    privileged: true
+    override_command: false
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: instance_haproxy_2
     image: jrei/systemd-ubuntu:20.04
     pre_build_image: true
     privileged: true
@@ -17,6 +24,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 lint: |
+  set -e
   yamllint --strict --format colored .
   ansible-lint -v --force-color --offline --exclude .pipenv/ .
 provisioner:
@@ -26,10 +34,17 @@ provisioner:
       all:
         vars:
           haproxy_ssl_dhparam_size: 512
+    host_vars:
+      instance_haproxy:
+        haproxy_create_self_signed_cert: true
+      instance_haproxy_2:
+        haproxy_create_self_signed_cert: false
+        haproxy_ssl_cert_chain_src_file_path: "{{ (lookup('env', 'MOLECULE_SCENARIO_DIRECTORY'), 'test.pem') | path_join }}"
   playbooks:
     prepare: prepare.yml
     check: converge.yml
     converge: converge.yml
+    verify: verify.yml
 verifier:
   name: ansible
 scenario:
