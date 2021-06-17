@@ -35,7 +35,7 @@ provisioner:
         vars:
           haproxy_ssl_dhparam_size: 512
     host_vars:
-      instance_haproxy:
+      instance_haproxy_1:
         haproxy_create_self_signed_cert: true
       instance_haproxy_2:
         haproxy_create_self_signed_cert: false
