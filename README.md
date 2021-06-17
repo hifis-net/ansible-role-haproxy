@@ -325,8 +325,9 @@ which will be copied to the remote host:
 haproxy_ssl_cert_chain_src_file_path: "haproxy.pem"
 ```
 
-**Note:** This variable is mandatory when `haproxy_create_self_signed_cert`is
-set to `false`.
+**Note:** This variable is mandatory when `haproxy_create_self_signed_cert` is
+set to `false`. The file should be PEM formatted and include at least the
+public certificate and the private key.
 
 #### HAProxy DH Parameter file path
 
