@@ -16,9 +16,9 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.2.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.2.0) - 2021-06-18
 
-[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.1...main)
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.1...v1.2.0)
 
 ### Added
 * Copy TLS chain file when self-signed cert creation is disabled
