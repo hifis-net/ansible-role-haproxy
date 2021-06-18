@@ -25,6 +25,11 @@ Group your changes into these categories:
   ([!42](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/42)
   by [Normo](https://gitlab.com/Normo)).
 
+### Changed
+* Set more restrictive file permissions for others
+  ([!43](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/43)
+  by [Normo](https://gitlab.com/Normo)).
+
 ## [1.1.1](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.1.1) - 2021-06-14
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.0...v1.1.1)
