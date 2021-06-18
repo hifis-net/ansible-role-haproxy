@@ -117,7 +117,7 @@
     state: directory
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
-    mode: '0755'
+    mode: '0750'
 
 - name: Create HAProxy Configuration File.
   become: yes
@@ -126,7 +126,7 @@
     dest: "{{ haproxy_conf_file_path }}"
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
-    mode: '0644'
+    mode: '0640'
   notify:
     - Check HAProxy configuration file
     - Reload HAProxy
@@ -138,7 +138,7 @@
     state: directory
     owner: "{{ haproxy_user }}"
     group: "{{ haproxy_group }}"
-    mode: '0755'
+    mode: '0750'
 
 - name: Generate self-signed TLS certificate
   when: haproxy_create_self_signed_cert | bool
