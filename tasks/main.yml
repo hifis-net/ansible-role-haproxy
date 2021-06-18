@@ -10,6 +10,7 @@
       # Support both variable names until version 2.0
       - haproxy_backends is defined or backends is defined
       - haproxy_frontend_ip is defined or frontend_ip is defined
+      - haproxy_create_self_signed_cert or haproxy_ssl_cert_chain_src_file_path is defined
     fail_msg: "Some mandatory variables are not set."
     success_msg: "All mandatory variables are set."
   when: haproxy_config_template == "haproxy.cfg.j2"
@@ -197,6 +198,18 @@
       notify:
         - Check HAProxy configuration file
         - Reload HAProxy
+
+- name: Copy TLS Pem file for HAProxy.
+  when: not haproxy_create_self_signed_cert | bool
+  ansible.builtin.copy:
+    src: "{{ haproxy_ssl_cert_chain_src_file_path }}"
+    dest: "{{ haproxy_ssl_certificate_chain_file }}"
+    mode: "0640"
+    owner: "root"
+    group: "{{ haproxy_group }}"
+  notify:
+    - Check HAProxy configuration file
+    - Reload HAProxy
 
 - name: Generate DH Parameter file
   ignore_errors: "{{ ignore_errors_in_check_mode }}"  # noqa ignore-errors

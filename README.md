@@ -316,6 +316,19 @@ Give the path to the HAProxy Certificate Chain file:
 haproxy_ssl_certificate_chain_file: "/etc/haproxy/ssl/haproxy.pem"
 ```
 
+#### HAProxy Certificate Chain source file path
+
+Give the path to the HAProxy Certificate Chain source file on the control node
+which will be copied to the remote host:
+
+```yaml
+haproxy_ssl_cert_chain_src_file_path: "haproxy.pem"
+```
+
+**Note:** This variable is mandatory when `haproxy_create_self_signed_cert` is
+set to `false`. The file should be PEM formatted and include at least the
+public certificate and the private key.
+
 #### HAProxy DH Parameter file path
 
 Give the path to the DH Parameter file:

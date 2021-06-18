@@ -5,6 +5,7 @@
 
 .travis.yml
 .idea/
+.cache/
 
 # Pipenv directory
 .pipenv/
