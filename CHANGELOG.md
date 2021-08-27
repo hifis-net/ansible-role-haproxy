@@ -16,6 +16,13 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+### Changed
+* Increase HAProxy version in file README
+  ([!45](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/45)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+
 ## [1.2.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.2.0) - 2021-06-18
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.1.1...v1.2.0)
