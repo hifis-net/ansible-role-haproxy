@@ -46,7 +46,7 @@ validate:
 
 molecule:
   stage: test
-  image: docker:latest
+  image: docker:dind
   variables: *cache_variables
   services:
     - docker:dind
@@ -54,10 +54,11 @@ molecule:
     # Install Molecule dependencies for use with GitLab CI
     # which are recommended by the Molecule docs:
     # https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
-    - apk update && apk add --no-cache
-      python3-dev py3-pip gcc git curl build-base
+    - apk update
+    - apk add --no-cache
+      python3 python3-dev py3-pip gcc git curl build-base
       autoconf automake py3-cryptography linux-headers
-      musl-dev libffi-dev openssl-dev openssh cargo
+      musl-dev libffi-dev openssl-dev openssh-client cargo
     # Output version string of tools used.
     - docker info
     - python3 --version
