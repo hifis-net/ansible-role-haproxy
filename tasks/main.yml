@@ -18,7 +18,7 @@
 - name: Set haproxy_backends variable if not set.
   when: haproxy_backends is not defined
   ansible.builtin.set_fact:
-    haproxy_backends: "{{ backends }}"
+    haproxy_backends: "{{ backends | default() }}"
 - name: "Show Deprecation warning"
   ansible.builtin.debug:
     msg: "The variable 'backends' is deprecated and will be removed in version 2.0"
@@ -27,7 +27,7 @@
 - name: Set haproxy_frontend_ip variable if not set.
   when: haproxy_frontend_ip is not defined
   ansible.builtin.set_fact:
-    haproxy_frontend_ip: "{{ frontend_ip }}"
+    haproxy_frontend_ip: "{{ frontend_ip | default() }}"
 - name: "Show Deprecation warning"
   ansible.builtin.debug:
     msg: "The variable 'frontend_ip' is deprecated and will be removed in version 2.0"
