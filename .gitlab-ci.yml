@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+image: python:3.9
+
 stages:
   - lint
   - test
@@ -31,7 +33,6 @@ variables:
 
 validate:
   stage: lint
-  image: python:3.8
   variables: *cache_variables
   before_script:
     - *before_script
