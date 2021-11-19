@@ -18,10 +18,16 @@ Group your changes into these categories:
 
 ## Unreleased
 
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.2.0...main)
+
 ### Changed
 * Increase HAProxy version in file README
   ([!45](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/45)
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+* Bump project dependencies python version to 3.9
+  ([!47](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/47)
+  by [Normo](https://gitlab.com/Normo)).
+
 
 ## [1.2.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.2.0) - 2021-06-18
 
