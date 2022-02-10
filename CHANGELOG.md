@@ -16,6 +16,16 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.3.0...main)
+
+### Fixed
+
+* Fix failing dry-run if ppa changes
+  ([!50](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/50)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
 ## [1.3.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.3.0) - 2021-11-23
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.2.0...v1.3.0)
