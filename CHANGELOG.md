@@ -25,6 +25,9 @@ Group your changes into these categories:
 * Fix failing dry-run if ppa changes
   ([!50](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/50)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+* Use http-check send instead of hiding options in httpchk
+  ([!52](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/52)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
 
 ## [1.3.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.3.0) - 2021-11-23
 
