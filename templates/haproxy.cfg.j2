@@ -58,7 +58,8 @@ frontend haproxy_stats
 backend gitlab
     # servers that fulfill the requests
     balance roundrobin
-    option httpchk HEAD /
+    option httpchk
+    http-check send meth HEAD uri /
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     default-server check maxconn 20
     {% for backend in haproxy_backends %}
