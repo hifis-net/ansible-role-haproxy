@@ -16,6 +16,14 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+### Fixed
+
+* Fix regexp to determine installed version before comparing versions
+  ([!54](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/54)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+
 ## [1.4.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.4.0) - 2022-02-10
 
 [List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.3.0...v1.4.0)
