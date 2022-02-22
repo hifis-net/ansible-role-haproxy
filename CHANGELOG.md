@@ -23,6 +23,9 @@ Group your changes into these categories:
 * Test role against HAProxy versions 2.2 and 2.4
   ([!56](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/56)
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+* Set default version of HAProxy from v2.2 (LTS) to v2.4 (LTS)
+  ([!55](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/55)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
 
 ### Fixed
 
