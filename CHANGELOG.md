@@ -18,6 +18,12 @@ Group your changes into these categories:
 
 ## Unreleased
 
+### Changed
+
+* Test role against HAProxy versions 2.2 and 2.4
+  ([!56](https://gitlab.com/hifis/ansible/haproxy-role/-/merge_requests/56)
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
 ### Fixed
 
 * Fix regexp to determine installed version before comparing versions
