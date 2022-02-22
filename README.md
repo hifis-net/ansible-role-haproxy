@@ -11,7 +11,16 @@ A role to set up HAProxy to be used as a load balancer in a high availability
 and scalability context.
 
 Currently [supported platforms](meta/main.yml) are:
+
 - Ubuntu 20.04 LTS
+
+This role is tested against the two latest LTS versions of HAProxy.
+Currently, this results in official support for the HAProxy release series.
+
+- `2.4`
+- `2.2`
+
+Other versiosn are known to work as well but are not automatically tested.
 
 ## Requirements
 
