@@ -16,7 +16,9 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.5.0](https://gitlab.com/hifis/ansible/haproxy-role/-/releases/v1.5.0) - 2022-02-22
+
+[List of commits](https://gitlab.com/hifis/ansible/haproxy-role/-/compare/v1.4.0...v1.5.0)
 
 ### Changed
 
