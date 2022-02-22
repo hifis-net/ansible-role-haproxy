@@ -89,7 +89,7 @@
     - name: Extract installed and target HAProxy versions.
       ansible.builtin.set_fact:
         installed_version: "{{ haproxy_version_installed |
-                               regex_search('HA-Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
+                               regex_search('HA-?Proxy version (\\d+\\.\\d+\\.\\d+)', '\\1') |
                                default([None], True) |
                                first }}"
         target_version: "{{ haproxy_version |
