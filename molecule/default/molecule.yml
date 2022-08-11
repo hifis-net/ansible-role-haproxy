@@ -24,8 +24,8 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 lint: |
-  set -e
-  yamllint --strict --format colored .
+  set -e &&
+  yamllint --strict --format colored . &&
   ansible-lint -v --force-color --offline --exclude .pipenv/ .
 provisioner:
   name: ansible

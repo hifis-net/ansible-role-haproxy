@@ -143,7 +143,7 @@
 
 - name: Generate self-signed TLS certificate
   when: haproxy_create_self_signed_cert | bool
-  ignore_errors: "{{ ignore_errors_in_check_mode }}"
+  ignore_errors: "{{ ignore_errors_in_check_mode }}"  # noqa ignore-errors
   block:
     - name: Generate an OpenSSL Private Key (4096 bits)
       become: yes
