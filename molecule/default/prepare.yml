@@ -17,6 +17,7 @@
           - software-properties-common # for use with "apt-repository"
           - python3-cryptography # for use with openssl modules
           - python3-openssl # for use to create p12 files
+        update_cache: yes
         state: present
 
 ...

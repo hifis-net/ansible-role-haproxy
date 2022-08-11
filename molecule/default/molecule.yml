@@ -7,22 +7,22 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: podman
 platforms:
-  - name: instance_haproxy_1
-    image: jrei/systemd-ubuntu:20.04
+  - name: instancehaproxy1
+    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:20.04}
     pre_build_image: true
     privileged: true
     override_command: false
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: instance_haproxy_2
-    image: jrei/systemd-ubuntu:20.04
+    systemd: true
+    tty: true
+  - name: instancehaproxy2
+    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:20.04}
     pre_build_image: true
     privileged: true
     override_command: false
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    systemd: true
+    tty: true
 lint: |
   set -e &&
   yamllint --strict --format colored . &&

@@ -23,7 +23,7 @@ jobs:
 
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
 
   license_compliance:
     name: Check license compliance with reuse.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v3
@@ -49,21 +49,35 @@ jobs:
 
   test:
     name: Run Molecule tests.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: true
+      matrix:
+        image:
+          - ghcr.io/hifis-net/ubuntu-systemd:20.04
 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v3
 
+      - name: Enable lingering required for podman and systemd in GH Actions.
+        run: |  # Compare with https://github.com/eriksjolund/user-systemd-service-actions-workflow/blob/efe872924fd2dd35bb482544126ce751303e14c2/README.md
+          sudo loginctl enable-linger $UID
+          sleep 1
+
       - name: Prepare the job environment.
         uses: ./.github/workflows/prepare-action
 
       - name: Run Molecule tests.
-        run: pipenv run molecule test
+        # Haproxy tries to configure the nofile limit which is not allowed from within podman.
+        # This approach increased the limit beforehand.
+        run: XDG_RUNTIME_DIR=/run/user/$UID pipenv run sudo prlimit --pid $$ --nofile=500000:500000 && pipenv run molecule test
+        env:
+          MOLECULE_IMAGE: ${{ matrix.image }}
 
   release:
     name: Release new version on Ansible Galaxy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     if: startsWith(github.ref, 'refs/tags/v')
     needs: [lint, license_compliance, test]
     steps:
