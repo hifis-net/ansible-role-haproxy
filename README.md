@@ -18,6 +18,7 @@ and scalability context.
 
 Currently [supported platforms](meta/main.yml) are:
 
+- Ubuntu 22.04 LTS
 - Ubuntu 20.04 LTS
 
 This role is tested against the two latest LTS versions of HAProxy.
