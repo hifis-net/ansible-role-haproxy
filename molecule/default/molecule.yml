@@ -10,14 +10,14 @@ driver:
   name: podman
 platforms:
   - name: instancehaproxy1
-    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:20.04}
+    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:22.04}
     pre_build_image: true
     privileged: true
     override_command: false
     systemd: true
     tty: true
   - name: instancehaproxy2
-    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:20.04}
+    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:22.04}
     pre_build_image: true
     privileged: true
     override_command: false
