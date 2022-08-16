@@ -3,4 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-1.6.0
+user=hifis-net
+project=ansible-role-haproxy
+since-tag=v1.5.0
+base=HISTORY.md

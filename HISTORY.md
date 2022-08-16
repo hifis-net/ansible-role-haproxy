@@ -1,10 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
-SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
-
-SPDX-License-Identifier: Apache-2.0
--->
-
 ## [v1.5.0](https://github.com/hifis-net/ansible-role-haproxy/releases/tag/v1.5.0) - 2022-02-22
 
 [List of commits](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.4.0...v1.5.0)

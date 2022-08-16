@@ -1,23 +1,33 @@
 # Changelog
 
-## [Unreleased](https://github.com/hifis-net/ansible-role-haproxy/tree/HEAD)
+## [v1.6.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v1.6.0) (2022-08-16)
 
-[Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.5.0...HEAD)
+[Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.5.0...v1.6.0)
+
+**Implemented enhancements:**
+
+- Support Ubuntu 22.04 [\#28](https://github.com/hifis-net/ansible-role-haproxy/issues/28)
+- Migrate changelog to github-changelog-generator [\#7](https://github.com/hifis-net/ansible-role-haproxy/issues/7)
 
 **Merged pull requests:**
 
+- Remove renovate.json [\#32](https://github.com/hifis-net/ansible-role-haproxy/pull/32) ([Normo](https://github.com/Normo))
+- Use Python 3.10 in the project [\#30](https://github.com/hifis-net/ansible-role-haproxy/pull/30) ([tobiashuste](https://github.com/tobiashuste))
+- Add support for Ubuntu 22.04 [\#29](https://github.com/hifis-net/ansible-role-haproxy/pull/29) ([tobiashuste](https://github.com/tobiashuste))
+- Use molecule-podman instead of molecule-docker [\#27](https://github.com/hifis-net/ansible-role-haproxy/pull/27) ([tobiashuste](https://github.com/tobiashuste))
+- Bump ansible from 5.7.1 to 6.2.0 [\#26](https://github.com/hifis-net/ansible-role-haproxy/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.0.2 to 6.4.0 [\#25](https://github.com/hifis-net/ansible-role-haproxy/pull/25) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 3.6.1 to 4.0.1 [\#24](https://github.com/hifis-net/ansible-role-haproxy/pull/24) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump yamllint from 1.26.3 to 1.27.1 [\#22](https://github.com/hifis-net/ansible-role-haproxy/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump robertdebock/galaxy-action from 1.2.0 to 1.2.1 [\#16](https://github.com/hifis-net/ansible-role-haproxy/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump reuse from 0.14.0 to 1.0.0 [\#15](https://github.com/hifis-net/ansible-role-haproxy/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 5.6.0 to 5.7.1 [\#10](https://github.com/hifis-net/ansible-role-haproxy/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Migrate manual changelog to github-changelog-generator [\#8](https://github.com/hifis-net/ansible-role-haproxy/pull/8) ([Normo](https://github.com/Normo))
 - Bump molecule from 3.6.0 to 3.6.1 [\#6](https://github.com/hifis-net/ansible-role-haproxy/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible-lint from 5.3.2 to 6.0.2 [\#5](https://github.com/hifis-net/ansible-role-haproxy/pull/5) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible from 5.3.0 to 5.6.0 [\#4](https://github.com/hifis-net/ansible-role-haproxy/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Add badges to README.md [\#3](https://github.com/hifis-net/ansible-role-haproxy/pull/3) ([Normo](https://github.com/Normo))
 - Implement GitHub actions workflows [\#1](https://github.com/hifis-net/ansible-role-haproxy/pull/1) ([Normo](https://github.com/Normo))
-
-<!--
-SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
-SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
-
-SPDX-License-Identifier: Apache-2.0
--->
 
 ## [v1.5.0](https://github.com/hifis-net/ansible-role-haproxy/releases/tag/v1.5.0) - 2022-02-22
 
