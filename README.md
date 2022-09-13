@@ -47,9 +47,6 @@ haproxy_backends:
     backend_id: '192.168.33.10'
 ```
 
-:warning: The variable name `backends` is deprecated and will be removed in
-version 2.0.
-
 #### Frontend floating IP address
 
 Specify the floating IP address of the frontend:
@@ -57,9 +54,6 @@ Specify the floating IP address of the frontend:
 ```yaml
 haproxy_frontend_ip: '192.168.33.100'
 ```
-
-:warning: The variable name `frontend_ip` is deprecated and will be removed in
-version 2.0.
 
 ### Compulsory variables which are set by default but need to be adapted
 
