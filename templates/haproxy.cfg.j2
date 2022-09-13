@@ -11,7 +11,9 @@ global
     group {{ haproxy_group }}
     daemon
     stats socket {{ haproxy_socket }} user {{ haproxy_user }} group {{ haproxy_group }} mode 660 level admin
+    {% if haproxy_version is version('2.6', 'lt') %}
     nbproc {{ haproxy_nbproc }}
+    {% endif %}
     nbthread {{ haproxy_nbthread }}
     cpu-map {{ haproxy_cpumap }}
 
