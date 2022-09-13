@@ -37,13 +37,13 @@ provisioner:
     host_vars:
       instance_haproxy_1:
         haproxy_create_self_signed_cert: true
-        haproxy_ppa_version: 'ppa:vbernat/haproxy-2.2'
-        haproxy_version: '2.2.*'
+        haproxy_ppa_version: 'ppa:vbernat/haproxy-2.4'
+        haproxy_version: '2.4.*'
       instance_haproxy_2:
         haproxy_create_self_signed_cert: false
         haproxy_ssl_cert_chain_src_file_path: "{{ (lookup('env', 'MOLECULE_SCENARIO_DIRECTORY'), 'test.pem') | path_join }}"
-        haproxy_ppa_version: 'ppa:vbernat/haproxy-2.4'
-        haproxy_version: '2.4.*'
+        haproxy_ppa_version: 'ppa:vbernat/haproxy-2.6'
+        haproxy_version: '2.6.*'
   playbooks:
     prepare: prepare.yml
     check: converge.yml
