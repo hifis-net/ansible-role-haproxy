@@ -35,11 +35,11 @@ provisioner:
         vars:
           haproxy_ssl_dhparam_size: 512
     host_vars:
-      instance_haproxy_1:
+      instancehaproxy1:
         haproxy_create_self_signed_cert: true
         haproxy_ppa_version: 'ppa:vbernat/haproxy-2.2'
         haproxy_version: '2.2.*'
-      instance_haproxy_2:
+      instancehaproxy2:
         haproxy_create_self_signed_cert: false
         haproxy_ssl_cert_chain_src_file_path: "{{ (lookup('env', 'MOLECULE_SCENARIO_DIRECTORY'), 'test.pem') | path_join }}"
         haproxy_ppa_version: 'ppa:vbernat/haproxy-2.4'
