@@ -1,5 +1,28 @@
 # Changelog
 
+## [v2.0.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.0.0) (2022-10-14)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.6.0...v2.0.0)
+
+**Closed issues:**
+
+- Add support for HAProxy 2.6 and remove official HAProxy 2.2 support [\#34](https://github.com/hifis-net/ansible-role-haproxy/issues/34)
+- Remove support for deprecated variables `backends` and `frontend_ip` [\#2](https://github.com/hifis-net/ansible-role-haproxy/issues/2)
+
+**Merged pull requests:**
+
+- Bump ansible-lint from 6.8.1 to 6.8.2 [\#51](https://github.com/hifis-net/ansible-role-haproxy/pull/51) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 6.4.0 to 6.5.0 [\#50](https://github.com/hifis-net/ansible-role-haproxy/pull/50) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.6.0 to 6.8.1 [\#49](https://github.com/hifis-net/ansible-role-haproxy/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule-podman from 2.0.2 to 2.0.3 [\#47](https://github.com/hifis-net/ansible-role-haproxy/pull/47) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.5.2 to 6.6.0 [\#44](https://github.com/hifis-net/ansible-role-haproxy/pull/44) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 6.3.0 to 6.4.0 [\#43](https://github.com/hifis-net/ansible-role-haproxy/pull/43) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Remove variables `backends` and `frontend_ip` [\#41](https://github.com/hifis-net/ansible-role-haproxy/pull/41) ([tobiashuste](https://github.com/tobiashuste))
+- Support HAProxy 2.4 and 2.6 and default to 2.6 [\#40](https://github.com/hifis-net/ansible-role-haproxy/pull/40) ([tobiashuste](https://github.com/tobiashuste))
+- Bump yamllint from 1.27.1 to 1.28.0 [\#39](https://github.com/hifis-net/ansible-role-haproxy/pull/39) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.4.0 to 6.5.2 [\#38](https://github.com/hifis-net/ansible-role-haproxy/pull/38) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 6.2.0 to 6.3.0 [\#36](https://github.com/hifis-net/ansible-role-haproxy/pull/36) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.6.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v1.6.0) (2022-08-16)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.5.0...v1.6.0)
@@ -9,8 +32,13 @@
 - Support Ubuntu 22.04 [\#28](https://github.com/hifis-net/ansible-role-haproxy/issues/28)
 - Migrate changelog to github-changelog-generator [\#7](https://github.com/hifis-net/ansible-role-haproxy/issues/7)
 
+**Closed issues:**
+
+- Release version 1.6.0 [\#31](https://github.com/hifis-net/ansible-role-haproxy/issues/31)
+
 **Merged pull requests:**
 
+- Prepare release 1.6.0 [\#33](https://github.com/hifis-net/ansible-role-haproxy/pull/33) ([tobiashuste](https://github.com/tobiashuste))
 - Remove renovate.json [\#32](https://github.com/hifis-net/ansible-role-haproxy/pull/32) ([Normo](https://github.com/Normo))
 - Use Python 3.10 in the project [\#30](https://github.com/hifis-net/ansible-role-haproxy/pull/30) ([tobiashuste](https://github.com/tobiashuste))
 - Add support for Ubuntu 22.04 [\#29](https://github.com/hifis-net/ansible-role-haproxy/pull/29) ([tobiashuste](https://github.com/tobiashuste))
