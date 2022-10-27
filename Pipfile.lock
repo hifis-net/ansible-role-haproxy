@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "170b7d7ad146290b419e5647826b9393aac56ecee2de1a8c6fcacf58443c8f32"
+            "sha256": "6a54c8f0c2b3f610943e563f394e194aaec0443c489153f189d5632bfbac3f18"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -283,11 +283,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:2faad6121d5c4bd239f6964e06742514f0bb079687cc24bffb76c73952e6ebf8",
-                "sha256:b2424c1c103bc2b573e1dcbd01eb11c6ef6a54ca35a3ad61c75501fedec41fed"
+                "sha256:6064cfa95403674ed6ea77b852705333f79f545d154b62a9ec7968179ba4f72b",
+                "sha256:b7c9afbda3da25e106ce648fb9846765237c672bacafd069f11bdaa85ece1648"
             ],
             "index": "pypi",
-            "version": "==6.8.3"
+            "version": "==6.8.4"
         },
         "arrow": {
             "hashes": [
@@ -802,7 +802,7 @@
                 "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983",
                 "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
+            "markers": "python_version >= '3.7' and python_full_version < '4.0.0'",
             "version": "==2.28.1"
         },
         "resolvelib": {
@@ -825,7 +825,7 @@
                 "sha256:a4eb26484f2c82589bd9a17c73d32a010b1e29d89f1604cd9bf3a2097b81bb5e",
                 "sha256:ba3a3775974105c221d31141f2c116f4fd65c5ceb0698657a11e9f295ec93fd0"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.3'",
+            "markers": "python_full_version >= '3.6.3' and python_full_version < '4.0.0'",
             "version": "==12.6.0"
         },
         "ruamel.yaml": {
@@ -927,7 +927,7 @@
                 "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e",
                 "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_full_version < '4.0.0'",
             "version": "==1.26.12"
         },
         "wcmatch": {
