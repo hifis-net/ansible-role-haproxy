@@ -16,7 +16,7 @@
 
 - name: Enable ip_forward.
   become: yes
-  ansible.builtin.sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: '1'
     state: present
@@ -25,7 +25,7 @@
 
 - name: Enable ip_nonlocal_bind.
   become: yes
-  ansible.builtin.sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.ip_nonlocal_bind
     value: '1'
     state: present
