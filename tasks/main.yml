@@ -82,45 +82,48 @@
   ansible.builtin.set_fact:
     ignore_errors_in_check_mode: "{{ ansible_check_mode and ppa.changed }}"
 
-- name: Install or upgrade "haproxy" package.
-  become: yes
-  ansible.builtin.package:
-    name: "{{ haproxy_name }}={{ haproxy_version }}"
-    update_cache: yes
-  when: version_contains_wildcard or
-        not haproxy_installed.stat.exists or
-        installed_version is version(target_version, operator='lt', strict=True)
+- name: Install and configure HAProxy
   ignore_errors: "{{ ignore_errors_in_check_mode }}"  # noqa ignore-errors
+  block:
 
-- name: Create HAProxy Configuration Directory.
-  become: yes
-  ansible.builtin.file:
-    path: "{{ haproxy_conf_dir }}"
-    state: directory
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0750'
+    - name: Install or upgrade "haproxy" package.
+      become: yes
+      ansible.builtin.package:
+        name: "{{ haproxy_name }}={{ haproxy_version }}"
+        update_cache: yes
+      when: version_contains_wildcard or
+            not haproxy_installed.stat.exists or
+            installed_version is version(target_version, operator='lt', strict=True)
 
-- name: Create HAProxy Configuration File.
-  become: yes
-  ansible.builtin.template:
-    src: "{{ haproxy_config_template }}"
-    dest: "{{ haproxy_conf_file_path }}"
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0640'
-  notify:
-    - Check HAProxy configuration file
-    - Reload HAProxy
+    - name: Create HAProxy Configuration Directory.
+      become: yes
+      ansible.builtin.file:
+        path: "{{ haproxy_conf_dir }}"
+        state: directory
+        owner: "{{ haproxy_user }}"
+        group: "{{ haproxy_group }}"
+        mode: '0750'
 
-- name: Create HAProxy SSL Directory.
-  become: yes
-  ansible.builtin.file:
-    path: "{{ haproxy_ssl_certificate_dir }}"
-    state: directory
-    owner: "{{ haproxy_user }}"
-    group: "{{ haproxy_group }}"
-    mode: '0750'
+    - name: Create HAProxy Configuration File.
+      become: yes
+      ansible.builtin.template:
+        src: "{{ haproxy_config_template }}"
+        dest: "{{ haproxy_conf_file_path }}"
+        owner: "{{ haproxy_user }}"
+        group: "{{ haproxy_group }}"
+        mode: '0640'
+      notify:
+        - Check HAProxy configuration file
+        - Reload HAProxy
+
+    - name: Create HAProxy SSL Directory.
+      become: yes
+      ansible.builtin.file:
+        path: "{{ haproxy_ssl_certificate_dir }}"
+        state: directory
+        owner: "{{ haproxy_user }}"
+        group: "{{ haproxy_group }}"
+        mode: '0750'
 
 - name: Generate self-signed TLS certificate
   when: haproxy_create_self_signed_cert | bool
