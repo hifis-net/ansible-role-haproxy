@@ -1,16 +1,50 @@
 # Changelog
 
+## [v2.1.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.1.0) (2023-05-31)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v2.0.0...v2.1.0)
+
+**Fixed bugs:**
+
+- \[WARNING\]: failed to look up user haproxy. Create user up to this point in real play [\#89](https://github.com/hifis-net/ansible-role-haproxy/issues/89)
+- Molecule folder not linted by molecule [\#55](https://github.com/hifis-net/ansible-role-haproxy/issues/55)
+
+**Closed issues:**
+
+- Add CONTRIBUTING file [\#93](https://github.com/hifis-net/ansible-role-haproxy/issues/93)
+- Provide citation metadata [\#91](https://github.com/hifis-net/ansible-role-haproxy/issues/91)
+-  Add codeowners to autoassign reviewers [\#90](https://github.com/hifis-net/ansible-role-haproxy/issues/90)
+
+**Merged pull requests:**
+
+- Bump ansible from 7.6.0 to 8.0.0 [\#97](https://github.com/hifis-net/ansible-role-haproxy/pull/97) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add CONTRIBUTING.md [\#95](https://github.com/hifis-net/ansible-role-haproxy/pull/95) ([Normo](https://github.com/Normo))
+- Add codeowners to autoassign reviewers [\#94](https://github.com/hifis-net/ansible-role-haproxy/pull/94) ([Normo](https://github.com/Normo))
+- Bump ansible from 6.5.0 to 7.6.0 [\#88](https://github.com/hifis-net/ansible-role-haproxy/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.14.3 to 6.16.2 [\#87](https://github.com/hifis-net/ansible-role-haproxy/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Ignore haproy user lookup errors during first dry-run in check\_mode [\#86](https://github.com/hifis-net/ansible-role-haproxy/pull/86) ([Normo](https://github.com/Normo))
+- Bump yamllint from 1.28.0 to 1.32.0 [\#85](https://github.com/hifis-net/ansible-role-haproxy/pull/85) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.3 to 5.0.1 [\#84](https://github.com/hifis-net/ansible-role-haproxy/pull/84) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.6 to 6.14.1 [\#83](https://github.com/hifis-net/ansible-role-haproxy/pull/83) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump reuse from 1.0.0 to 1.1.2 [\#77](https://github.com/hifis-net/ansible-role-haproxy/pull/77) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.3 to 6.8.6 [\#59](https://github.com/hifis-net/ansible-role-haproxy/pull/59) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.2 to 4.0.3 [\#57](https://github.com/hifis-net/ansible-role-haproxy/pull/57) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.2 to 6.8.3 [\#56](https://github.com/hifis-net/ansible-role-haproxy/pull/56) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.1 to 4.0.2 [\#54](https://github.com/hifis-net/ansible-role-haproxy/pull/54) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v2.0.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.0.0) (2022-10-14)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v1.6.0...v2.0.0)
 
 **Closed issues:**
 
+- Release version 2.0.0 [\#52](https://github.com/hifis-net/ansible-role-haproxy/issues/52)
 - Add support for HAProxy 2.6 and remove official HAProxy 2.2 support [\#34](https://github.com/hifis-net/ansible-role-haproxy/issues/34)
 - Remove support for deprecated variables `backends` and `frontend_ip` [\#2](https://github.com/hifis-net/ansible-role-haproxy/issues/2)
 
 **Merged pull requests:**
 
+- Prepare release of version 2.0.0 [\#53](https://github.com/hifis-net/ansible-role-haproxy/pull/53) ([tobiashuste](https://github.com/tobiashuste))
 - Bump ansible-lint from 6.8.1 to 6.8.2 [\#51](https://github.com/hifis-net/ansible-role-haproxy/pull/51) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible from 6.4.0 to 6.5.0 [\#50](https://github.com/hifis-net/ansible-role-haproxy/pull/50) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible-lint from 6.6.0 to 6.8.1 [\#49](https://github.com/hifis-net/ansible-role-haproxy/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
