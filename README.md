@@ -382,3 +382,10 @@ Note: This role is intended for use with, but not limited to, the
 ## Author Information
 
 [HIFIS Software Team](https://software.hifis.net)
+
+## Contributors
+
+We would like to thank and give credits to the following contributors of this
+project:
+
+* Be the first to be named here!
