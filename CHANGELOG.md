@@ -1,6 +1,6 @@
 # Changelog
 
-## [v2.1.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.1.0) (2023-05-31)
+## [v2.1.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.1.0) (2023-06-01)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v2.0.0...v2.1.0)
 
