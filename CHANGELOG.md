@@ -18,6 +18,7 @@
 **Merged pull requests:**
 
 - Bump ansible from 7.6.0 to 8.0.0 [\#97](https://github.com/hifis-net/ansible-role-haproxy/pull/97) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Prepare release of version 2.1.0 [\#96](https://github.com/hifis-net/ansible-role-haproxy/pull/96) ([Normo](https://github.com/Normo))
 - Add CONTRIBUTING.md [\#95](https://github.com/hifis-net/ansible-role-haproxy/pull/95) ([Normo](https://github.com/Normo))
 - Add codeowners to autoassign reviewers [\#94](https://github.com/hifis-net/ansible-role-haproxy/pull/94) ([Normo](https://github.com/Normo))
 - Bump ansible from 6.5.0 to 7.6.0 [\#88](https://github.com/hifis-net/ansible-role-haproxy/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
