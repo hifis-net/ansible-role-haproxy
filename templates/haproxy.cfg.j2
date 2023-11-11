@@ -65,5 +65,5 @@ backend gitlab
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     default-server check maxconn 20
     {% for backend in haproxy_backends %}
-    server {{ backend.backend_name }} {{ backend.backend_ip }}:80 check
+    server {{ backend.backend_name }} {{ backend.backend_ip }}:{{ backend.backend_port | default(80, true) }} check
     {% endfor %}
