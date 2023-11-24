@@ -39,12 +39,13 @@ None.
 
 #### Backend GitLab IP addresses
 
-Specify a list of backends with name and IP address:
+Specify a list of backends with name and IP address (Port is optional, defaults to `80`):
  
 ```yaml
 haproxy_backends:
   - backend_name: 'backend_server_1'
-    backend_id: '192.168.33.10'
+    backend_ip: '192.168.33.10'
+    backend_port: '80'
 ```
 
 #### Frontend floating IP address
@@ -372,7 +373,8 @@ Note: This role is intended for use with, but not limited to, the
         haproxy_frontend_ip: '192.168.33.100'
         haproxy_backends:
           - backend_name: 'backend_server_1'
-            backend_id: '192.168.33.10'
+            backend_ip: '192.168.33.10'
+            backend_port: 80
 ```
 
 ## License
