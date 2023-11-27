@@ -47,6 +47,7 @@
     validate_certs: yes
     mode: '0644'
   register: "ppa"
+  when: haproxy_ppa_version | length > 0
 
 - name: Check whether wildcard character is contained in version string.
   ansible.builtin.set_fact:
