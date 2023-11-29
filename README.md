@@ -8,10 +8,9 @@ SPDX-License-Identifier: Apache-2.0
 # HAProxy Role
 
 [![CI Status](https://github.com/hifis-net/ansible-role-haproxy/actions/workflows/ci.yml/badge.svg)](https://github.com/hifis-net/ansible-role-haproxy/actions/workflows/ci.yml)
-[![Ansible Galaxy Role](https://img.shields.io/ansible/role/52835?color=orange)](https://galaxy.ansible.com/hifis/haproxy)
-[![Ansible Galaxy quality score](https://img.shields.io/ansible/quality/52835)](https://galaxy.ansible.com/hifis/haproxy)
 [![Apache-2.0 Licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/hifis-net/ansible-role-haproxy/blob/main/LICENSES/Apache-2.0.txt)
 [![Latest release](https://img.shields.io/github/v/release/hifis-net/ansible-role-haproxy)](https://github.com/hifis-net/ansible-role-haproxy/releases)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6997437.svg)](https://doi.org/10.5281/zenodo.6997437)
 
 A role to set up HAProxy to be used as a load balancer in a high availability
 and scalability context.
@@ -90,9 +89,9 @@ Variable to enable or disable the stats:
 haproxy_stats_enable: 'enable'
 ```
 
-#### Stats admin user name
+#### Stats admin username
 
-Variable to hold the stats admin user name:
+Variable to hold the stats admin username:
 
 ```yaml
 haproxy_stats_admin_user: 'admin'
@@ -217,7 +216,7 @@ haproxy_socket: '/run/haproxy/admin.sock'
 
 #### HAProxy self-signed SSL certificate creation
 
-Wether to create a self-signed SSL certificate:
+Whether to create a self-signed SSL certificate:
 
 ```yaml
 haproxy_create_self_signed_cert: true
@@ -383,11 +382,12 @@ Note: This role is intended for use with, but not limited to, the
 
 ## Author Information
 
-[HIFIS Software Team](https://software.hifis.net)
+[HIFIS Software Team](https://www.hifis.net/)
 
 ## Contributors
 
 We would like to thank and give credits to the following contributors of this
 project:
 
-* Be the first to be named here!
+* [mindovermiles262](https://github.com/mindovermiles262)
+* [cnaslain](https://github.com/cnaslain)
