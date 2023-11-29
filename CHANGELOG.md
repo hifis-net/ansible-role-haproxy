@@ -1,5 +1,30 @@
 # Changelog
 
+## [v2.2.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.2.0) (2023-11-29)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v2.1.0...v2.2.0)
+
+**Closed issues:**
+
+- Add PPA for HAProxy error bookworm version [\#125](https://github.com/hifis-net/ansible-role-haproxy/issues/125)
+
+**Merged pull requests:**
+
+- ci: improve coverage of ansible-lint command again [\#129](https://github.com/hifis-net/ansible-role-haproxy/pull/129) ([Normo](https://github.com/Normo))
+- ci: make ci workflow working again [\#128](https://github.com/hifis-net/ansible-role-haproxy/pull/128) ([Normo](https://github.com/Normo))
+- Bypass Add PPA for HAProxy if haproxy\_ppa\_version is empty [\#126](https://github.com/hifis-net/ansible-role-haproxy/pull/126) ([cnaslain](https://github.com/cnaslain))
+- Bump ansible from 8.1.0 to 9.0.1 [\#124](https://github.com/hifis-net/ansible-role-haproxy/pull/124) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Feat: Add optional backend port [\#122](https://github.com/hifis-net/ansible-role-haproxy/pull/122) ([mindovermiles262](https://github.com/mindovermiles262))
+- Bump yamllint from 1.32.0 to 1.33.0 [\#121](https://github.com/hifis-net/ansible-role-haproxy/pull/121) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.17.2 to 6.22.0 [\#118](https://github.com/hifis-net/ansible-role-haproxy/pull/118) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 3 to 4 [\#110](https://github.com/hifis-net/ansible-role-haproxy/pull/110) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 5.1.0 to 6.0.2 [\#109](https://github.com/hifis-net/ansible-role-haproxy/pull/109) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule-plugins from 23.4.1 to 23.5.0 [\#104](https://github.com/hifis-net/ansible-role-haproxy/pull/104) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump reuse from 1.1.2 to 2.1.0 [\#102](https://github.com/hifis-net/ansible-role-haproxy/pull/102) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.16.2 to 6.17.2 [\#101](https://github.com/hifis-net/ansible-role-haproxy/pull/101) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 5.0.1 to 5.1.0 [\#100](https://github.com/hifis-net/ansible-role-haproxy/pull/100) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 8.0.0 to 8.1.0 [\#99](https://github.com/hifis-net/ansible-role-haproxy/pull/99) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v2.1.0](https://github.com/hifis-net/ansible-role-haproxy/tree/v2.1.0) (2023-06-01)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-haproxy/compare/v2.0.0...v2.1.0)
