@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Prepare release version 2.2.0 [\#130](https://github.com/hifis-net/ansible-role-haproxy/pull/130) ([Normo](https://github.com/Normo))
 - ci: improve coverage of ansible-lint command again [\#129](https://github.com/hifis-net/ansible-role-haproxy/pull/129) ([Normo](https://github.com/Normo))
 - ci: make ci workflow working again [\#128](https://github.com/hifis-net/ansible-role-haproxy/pull/128) ([Normo](https://github.com/Normo))
 - Bypass Add PPA for HAProxy if haproxy\_ppa\_version is empty [\#126](https://github.com/hifis-net/ansible-role-haproxy/pull/126) ([cnaslain](https://github.com/cnaslain))
