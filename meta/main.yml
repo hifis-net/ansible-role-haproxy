@@ -10,7 +10,6 @@ galaxy_info:
   author: HIFIS Software Team
   description: Install and configure HAProxy to be used for load-balancing in a high availability and scalability context.
   company: Helmholtz Association
-  standalone: true
 
   issue_tracker_url: https://gitlab.com/hifis/ansible/haproxy-role/-/issues
 
