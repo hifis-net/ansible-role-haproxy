@@ -7,6 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 
 # HAProxy Role
 
+:warning: **This project is archived!** :warning:
+
+This role has been migrated to our `hifis.toolkit` collection:
+
+- <https://github.com/hifis-net/ansible-collection-toolkit>
+- <https://galaxy.ansible.com/ui/repo/published/hifis/toolkit/>
+
 [![CI Status](https://github.com/hifis-net/ansible-role-haproxy/actions/workflows/ci.yml/badge.svg)](https://github.com/hifis-net/ansible-role-haproxy/actions/workflows/ci.yml)
 [![Ansible Role: hifis.haproxy](https://img.shields.io/badge/role-hifis.haproxy-blue)](https://galaxy.ansible.com/ui/standalone/roles/hifis/haproxy/)
 [![Ansible Role Downloads](https://img.shields.io/ansible/role/d/hifis/haproxy)](https://galaxy.ansible.com/ui/standalone/roles/hifis/haproxy/)
